@@ -868,3 +868,96 @@ img {
     display:none;
 
 }
+
+/* ===========================
+GAME CARD PREMIUM
+=========================== */
+
+.game-card{
+display:block;
+background:#181818;
+border-radius:20px;
+overflow:hidden;
+text-decoration:none;
+transition:.3s;
+border:1px solid rgba(255,255,255,.08);
+}
+
+.game-card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(0,0,0,.35);
+border-color:#f7c948;
+}
+
+.game-image{
+position:relative;
+padding:25px;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(180deg,#222,#111);
+}
+
+.game-image img{
+width:75px;
+height:75px;
+object-fit:contain;
+}
+
+.badge-popular{
+position:absolute;
+top:10px;
+left:10px;
+background:#f7c948;
+color:#111;
+padding:4px 10px;
+border-radius:20px;
+font-size:11px;
+font-weight:bold;
+}
+
+.game-info{
+padding:18px;
+}
+
+.game-info h3{
+margin:0;
+color:#fff;
+font-size:18px;
+}
+
+.game-info p{
+margin:6px 0;
+color:#999;
+font-size:13px;
+}
+
+.price{
+margin-top:15px;
+font-size:13px;
+color:#bbb;
+}
+
+.price strong{
+display:block;
+margin-top:5px;
+font-size:20px;
+color:#f7c948;
+}
+
+.buy-btn{
+margin-top:18px;
+width:100%;
+padding:12px;
+border:none;
+border-radius:12px;
+background:#f7c948;
+color:#111;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.buy-btn:hover{
+transform:scale(1.03);
+}

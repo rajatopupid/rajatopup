@@ -19,85 +19,183 @@ href="/css/style.css">
 
 <body>
 
-<header class="header">
+<header class="topbar">
 
-<div class="logo">
+    <div class="logo-area">
 
-👑
-<%= settings.website || "RajaTopUp" %>
+        <div class="logo-icon">
+            👑
+        </div>
 
-</div>
+        <div>
 
-<nav>
+            <h2><%= settings.website || "RajaTopUp" %></h2>
 
-<a href="/">Home</a>
+            <small>Top Up Game Otomatis</small>
 
-<a href="/about">Tentang</a>
+        </div>
 
-<a href="/contact">Kontak</a>
+    </div>
 
-<a href="/faq">FAQ</a>
+    <div class="top-icons">
 
-<% if(admin){ %>
+        <button class="icon-btn">
+            🔔
+        </button>
 
-<a href="/admin/dashboard">
-Dashboard
-</a>
+        <button class="icon-btn">
+            ☰
+        </button>
 
-<% }else{ %>
-
-<a href="/admin/login">
-Admin
-</a>
-
-<% } %>
-
-</nav>
+    </div>
 
 </header>
 
+
 <section class="hero">
 
-<div class="banner">
+    <div class="hero-slider">
 
-<div>
+        <div class="slide active">
 
-<h1>👑 RajaTopUp</h1>
+            <div class="slide-content">
 
-<p>Top Up Game Otomatis • Cepat • Aman 24 Jam</p>
+                <span class="badge">
+                    PROMO
+                </span>
 
-<a class="btn" href="#productGrid">
-Top Up Sekarang
-</a>
+                <h1>
 
-</div>
+                    Top Up Game
+                    Murah &
+                    Instan
 
-</div>
+                </h1>
+
+                <p>
+
+                    Diamond masuk otomatis
+                    dalam hitungan detik.
+
+                </p>
+
+                <a href="#productGrid" class="hero-btn">
+
+                    Top Up Sekarang
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="slide">
+
+            <div class="slide-content">
+
+                <span class="badge">
+                    EVENT
+                </span>
+
+                <h1>
+
+                    Cashback
+                    Hingga 10%
+
+                </h1>
+
+                <p>
+
+                    Berlaku untuk semua
+                    metode pembayaran.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="slide">
+
+            <div class="slide-content">
+
+                <span class="badge">
+                    TERBARU
+                </span>
+
+                <h1>
+
+                    Pembayaran
+                    Lengkap
+
+                </h1>
+
+                <p>
+
+                    QRIS
+                    DANA
+                    GoPay
+                    VA
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
-<section class="search">
+<section class="category-scroll">
 
-<input
+<button class="category-item active">
 
-type="text"
+🔥 Semua
 
-id="search"
+</button>
 
-placeholder="Cari game..."
+<button class="category-item">
 
-onkeyup="filterProduct()"
+🎮 Populer
 
->
+</button>
+
+<button class="category-item">
+
+💎 Diamond
+
+</button>
+
+<button class="category-item">
+
+🎫 Voucher
+
+</button>
+
+<button class="category-item">
+
+⭐ Baru
+
+</button>
 
 </section>
 
-<section class="category">
+<section class="section-title">
 
-<h2>🔥 Game Populer</h2>
+<h2>
+
+🎮 Semua Game
+
+</h2>
+
+<p>
+
+Pilih game favoritmu
+
+</p>
 
 </section>
-
 
 <section
 class="product-grid"
@@ -106,45 +204,57 @@ id="productGrid">
 
 <% products.forEach(p=>{ %>
 
-<div class="card">
+<a href="/product/<%= p.kode %>" class="game-card">
 
-<div class="card-header">
+<div class="game-image">
 
 <img
 src="/images/<%= (p.game || 'default').toLowerCase().replace(/\s+/g,'') %>.png"
 onerror="this.src='/images/default.png'">
 
-<h3><%= p.nama %></h3>
+<span class="badge-popular">
 
-<p><%= p.game %></p>
+🔥 Populer
+
+</span>
 
 </div>
 
-<div class="card-body">
+<div class="game-info">
 
-<small>Mulai Dari</small>
+<h3>
 
-<h2>
+<%= p.nama %>
+
+</h3>
+
+<p>
+
+<%= p.game %>
+
+</p>
+
+<div class="price">
+
+Mulai
+
+<strong>
 
 Rp <%= Number(p.harga_jual || 0).toLocaleString("id-ID") %>
 
-</h2>
+</strong>
 
 </div>
 
-<div class="card-footer">
+<button class="buy-btn">
 
-<a
-class="btn"
-href="/product/<%= p.kode %>">
+Top Up →
 
-Top Up
+</button>
+
+</div>
 
 </a>
-
-</div>
-
-</div>
 
 <% }) %>
 
