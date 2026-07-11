@@ -90,6 +90,62 @@ onerror="this.style.display='none'">
 
 </section>
 
+<div class="hero-slider">
+
+<div class="slide active">
+
+<span class="hero-badge">🔥 PROMO</span>
+
+<h1>Top Up Game Murah, Cepat & Aman 24 Jam</h1>
+
+<p>Proses instan • Harga terbaik • Support 24 Jam</p>
+
+<a href="#productGrid" class="hero-btn">
+Top Up Sekarang →
+</a>
+
+</div>
+
+<div class="slide">
+
+<span class="hero-badge">🎁 BONUS</span>
+
+<h1>Cashback Hingga 10%</h1>
+
+<p>Berlaku untuk semua metode pembayaran</p>
+
+<a href="#">
+Lihat Promo →
+</a>
+
+</div>
+
+<div class="slide">
+
+<span class="hero-badge">💳 PEMBAYARAN</span>
+
+<h1>QRIS • DANA • GoPay</h1>
+
+<p>Pembayaran otomatis 24 jam</p>
+
+<a href="#">
+Lihat Metode →
+</a>
+
+</div>
+
+<div class="slider-dot">
+
+<span class="dot active"></span>
+
+<span class="dot"></span>
+
+<span class="dot"></span>
+
+</div>
+
+</div>
+
 <section class="category-scroll">
 
 <div class="chip active">
@@ -238,6 +294,32 @@ text.includes(keyword)
 });
 
 }
+
+const slides=document.querySelectorAll(".slide");
+
+const dots=document.querySelectorAll(".dot");
+
+let current=0;
+
+setInterval(()=>{
+
+slides[current].classList.remove("active");
+
+dots[current].classList.remove("active");
+
+current++;
+
+if(current>=slides.length){
+
+current=0;
+
+}
+
+slides[current].classList.add("active");
+
+dots[current].classList.add("active");
+
+},4000);
 
 </script>
 
