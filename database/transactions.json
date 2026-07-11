@@ -1,0 +1,212 @@
+[
+  {
+    "ref_id": "RTU1783695027691",
+    "response": {
+      "error_msg": "Signature not valid",
+      "status": 0
+    },
+    "createdAt": "2026-07-10T14:50:28.248Z"
+  },
+  {
+    "ref_id": "RTU1783695444301",
+    "response": {
+      "error_msg": "Signature not valid",
+      "status": 0
+    },
+    "createdAt": "2026-07-10T14:57:24.771Z"
+  },
+  {
+    "ref_id": "RTU1783696586971",
+    "response": {
+      "error_msg": "Signature not valid",
+      "status": 0
+    },
+    "createdAt": "2026-07-10T15:16:27.667Z"
+  },
+  {
+    "ref_id": "RTU1783702661784",
+    "response": {
+      "error_msg": "Signature not valid",
+      "status": 0
+    },
+    "createdAt": "2026-07-10T16:57:42.150Z"
+  },
+  {
+    "ref_id": "RTU1783702682162",
+    "response": {
+      "error_msg": "Signature not valid",
+      "status": 0
+    },
+    "createdAt": "2026-07-10T16:58:02.490Z"
+  },
+  {
+    "ref_id": "RTU1783702731891",
+    "response": {
+      "error_msg": "Signature not valid",
+      "status": 0
+    },
+    "createdAt": "2026-07-10T16:58:54.269Z"
+  },
+  {
+    "ref_id": "RTU1783704121162",
+    "response": {
+      "data": {
+        "merchant_id": "M260709ZDYF5524WY",
+        "trx_id": "SA260711TBNQ000112",
+        "ref_id": "RTU1783704121162",
+        "destination": "5010694995",
+        "product_code": "FF5",
+        "product_code_master": "FF5",
+        "message": "R#RTU1783704121162 FF5.5010694995, status PENDING. . Sisa saldo 225. HARGA:774. trx_id:SA260711TBNQ000112.",
+        "status": "Pending",
+        "sn": "",
+        "last_balance": "225",
+        "product_detail": {
+          "name": "5 Diamond Free Fire",
+          "code": "FF5",
+          "price": 3,
+          "price_unit": "garena shell",
+          "rate": 258,
+          "price_rp": 774
+        }
+      },
+      "status": 1
+    },
+    "createdAt": "2026-07-10T17:22:01.934Z"
+  },
+  {
+    "ref_id": "RTU1783704466955",
+    "response": {
+      "data": {
+        "merchant_id": "M260709ZDYF5524WY",
+        "trx_id": "SA260711BZIK000137",
+        "ref_id": "RTU1783704466955",
+        "destination": "5010694995",
+        "product_code": "FF5",
+        "product_code_master": "FF5",
+        "message": "R#RTU1783704466955 FF5.5010694995, status PENDING. . Sisa saldo 225. HARGA:774. trx_id:SA260711BZIK000137.",
+        "status": "Pending",
+        "sn": "",
+        "last_balance": "225",
+        "product_detail": {
+          "name": "5 Diamond Free Fire",
+          "code": "FF5",
+          "price": 3,
+          "price_unit": "garena shell",
+          "rate": 258,
+          "price_rp": 774
+        }
+      },
+      "status": 1
+    },
+    "createdAt": "2026-07-10T17:27:47.249Z"
+  },
+  {
+    "ref_id": "RTU1783704478685",
+    "response": {
+      "data": {
+        "merchant_id": "M260709ZDYF5524WY",
+        "trx_id": "SA260711TWHY000138",
+        "ref_id": "RTU1783704478685",
+        "destination": "5010694995",
+        "product_code": "FF5",
+        "product_code_master": "FF5",
+        "message": "R#RTU1783704478685 FF5.5010694995, status PENDING. . Sisa saldo 225. HARGA:774. trx_id:SA260711TWHY000138.",
+        "status": "Pending",
+        "sn": "",
+        "last_balance": "225",
+        "product_detail": {
+          "name": "5 Diamond Free Fire",
+          "code": "FF5",
+          "price": 3,
+          "price_unit": "garena shell",
+          "rate": 258,
+          "price_rp": 774
+        }
+      },
+      "status": 1
+    },
+    "createdAt": "2026-07-10T17:27:58.977Z"
+  },
+  {
+    "ref_id": "RTU1783704546695",
+    "response": {
+      "data": {
+        "merchant_id": "M260709ZDYF5524WY",
+        "trx_id": "SA260711ZUOK000145",
+        "ref_id": "RTU1783704546695",
+        "destination": "5010694995",
+        "product_code": "FF5",
+        "product_code_master": "FF5",
+        "message": "R#RTU1783704546695 FF5.5010694995, status PENDING. . Sisa saldo 225. HARGA:774. trx_id:SA260711ZUOK000145.",
+        "status": "Pending",
+        "sn": "",
+        "last_balance": "225",
+        "product_detail": {
+          "name": "5 Diamond Free Fire",
+          "code": "FF5",
+          "price": 3,
+          "price_unit": "garena shell",
+          "rate": 258,
+          "price_rp": 774
+        }
+      },
+      "status": 1
+    },
+    "createdAt": "2026-07-10T17:29:07.119Z"
+  },
+  {
+    "ref_id": "RTU1783735718080",
+    "response": {
+      "data": {
+        "merchant_id": "M260709ZDYF5524WY",
+        "trx_id": "SA260711KGRJ002101",
+        "ref_id": "RTU1783735718080",
+        "destination": "5010694995",
+        "product_code": "FF40",
+        "product_code_master": "FF40",
+        "message": "R#RTU1783735718080 FF40.5010694995, status PENDING. . Sisa saldo 225. HARGA:6192. trx_id:SA260711KGRJ002101.",
+        "status": "Pending",
+        "sn": "",
+        "last_balance": "225",
+        "product_detail": {
+          "name": "40 Diamond Free Fire",
+          "code": "FF40",
+          "price": 24,
+          "price_unit": "garena shell",
+          "rate": 258,
+          "price_rp": 6192
+        }
+      },
+      "status": 1
+    },
+    "createdAt": "2026-07-11T02:08:38.554Z"
+  },
+  {
+    "ref_id": "RTU1783736121438",
+    "response": {
+      "data": {
+        "merchant_id": "M260709ZDYF5524WY",
+        "trx_id": "SA260711JAVI002166",
+        "ref_id": "RTU1783736121438",
+        "destination": "5010694995",
+        "product_code": "FF40",
+        "product_code_master": "FF40",
+        "message": "R#RTU1783736121438 FF40.5010694995, status PENDING. . Sisa saldo 225. HARGA:6192. trx_id:SA260711JAVI002166.",
+        "status": "Pending",
+        "sn": "",
+        "last_balance": "225",
+        "product_detail": {
+          "name": "40 Diamond Free Fire",
+          "code": "FF40",
+          "price": 24,
+          "price_unit": "garena shell",
+          "rate": 258,
+          "price_rp": 6192
+        }
+      },
+      "status": 1
+    },
+    "createdAt": "2026-07-11T02:15:23.744Z"
+  }
+]

@@ -1,0 +1,488 @@
+[
+  {
+    "id": "FF5",
+    "game": "Free Fire",
+    "nama": "5 Diamond Free Fire",
+    "kode": "FF5",
+    "harga_modal": 774,
+    "harga_jual": 900,
+    "status": true
+  },
+  {
+    "id": "FF10",
+    "game": "Free Fire",
+    "nama": "10 Diamond Free Fire",
+    "kode": "FF10",
+    "harga_modal": 1548,
+    "harga_jual": 1800,
+    "status": true
+  },
+  {
+    "id": "FF15",
+    "game": "Free Fire",
+    "nama": "15 Diamond Free Fire",
+    "kode": "FF15",
+    "harga_modal": 2322,
+    "harga_jual": 2600,
+    "status": true
+  },
+  {
+    "id": "FF20",
+    "game": "Free Fire",
+    "nama": "20 Diamond Free Fire",
+    "kode": "FF20",
+    "harga_modal": 3096,
+    "harga_jual": 3400,
+    "status": true
+  },
+  {
+    "id": "FF25",
+    "game": "Free Fire",
+    "nama": "25 Diamond Free Fire",
+    "kode": "FF25",
+    "harga_modal": 3870,
+    "harga_jual": 4200,
+    "status": true
+  },
+  {
+    "id": "FF30",
+    "game": "Free Fire",
+    "nama": "30 Diamond Free Fire",
+    "kode": "FF30",
+    "harga_modal": 4644,
+    "harga_jual": 5000,
+    "status": true
+  },
+  {
+    "id": "FF40",
+    "game": "Free Fire",
+    "nama": "40 Diamond Free Fire",
+    "kode": "FF40",
+    "harga_modal": 6192,
+    "harga_jual": 6700,
+    "status": true
+  },
+  {
+    "id": "FF50",
+    "game": "Free Fire",
+    "nama": "50 Diamond Free Fire",
+    "kode": "FF50",
+    "harga_modal": 6192,
+    "harga_jual": 6700,
+    "status": true
+  },
+  {
+    "id": "FF60",
+    "game": "Free Fire",
+    "nama": "60 Diamond Free Fire",
+    "kode": "FF60",
+    "harga_modal": 7740,
+    "harga_jual": 8300,
+    "status": true
+  },
+  {
+    "id": "FF70",
+    "game": "Free Fire",
+    "nama": "70 Diamond Free Fire",
+    "kode": "FF70",
+    "harga_modal": 8514,
+    "harga_jual": 9100,
+    "status": true
+  },
+  {
+    "id": "FF75",
+    "game": "Free Fire",
+    "nama": "75 Diamond Free Fire",
+    "kode": "FF75",
+    "harga_modal": 9288,
+    "harga_jual": 9900,
+    "status": true
+  },
+  {
+    "id": "FF80",
+    "game": "Free Fire",
+    "nama": "80 Diamond Free Fire",
+    "kode": "FF80",
+    "harga_modal": 10062,
+    "harga_jual": 10700,
+    "status": true
+  },
+  {
+    "id": "FF90",
+    "game": "Free Fire",
+    "nama": "90 Diamond Free Fire",
+    "kode": "FF90",
+    "harga_modal": 11610,
+    "harga_jual": 12300,
+    "status": true
+  },
+  {
+    "id": "FF100",
+    "game": "Free Fire",
+    "nama": "100 Diamond Free Fire",
+    "kode": "FF100",
+    "harga_modal": 12384,
+    "harga_jual": 13100,
+    "status": true
+  },
+  {
+    "id": "FF120",
+    "game": "Free Fire",
+    "nama": "120 Diamond Free Fire",
+    "kode": "FF120",
+    "harga_modal": 14706,
+    "harga_jual": 15500,
+    "status": true
+  },
+  {
+    "id": "FF140",
+    "game": "Free Fire",
+    "nama": "140 Diamond Free Fire",
+    "kode": "FF140",
+    "harga_modal": 17028,
+    "harga_jual": 18000,
+    "status": true
+  },
+  {
+    "id": "FF150",
+    "game": "Free Fire",
+    "nama": "150 Diamond Free Fire",
+    "kode": "FF150",
+    "harga_modal": 18576,
+    "harga_jual": 19600,
+    "status": true
+  },
+  {
+    "id": "FF160",
+    "game": "Free Fire",
+    "nama": "160 Diamond Free Fire",
+    "kode": "FF160",
+    "harga_modal": 20124,
+    "harga_jual": 21200,
+    "status": true
+  },
+  {
+    "id": "FF180",
+    "game": "Free Fire",
+    "nama": "180 Diamond Free Fire",
+    "kode": "FF180",
+    "harga_modal": 22446,
+    "harga_jual": 23600,
+    "status": true
+  },
+  {
+    "id": "FF190",
+    "game": "Free Fire",
+    "nama": "190 Diamond Free Fire",
+    "kode": "FF190",
+    "harga_modal": 23220,
+    "harga_jual": 24400,
+    "status": true
+  },
+{
+  "id": "FF200",
+  "game": "Free Fire",
+  "nama": "200 Diamond Free Fire",
+  "kode": "FF200",
+  "harga_modal": 24768,
+  "harga_jual": 26000,
+  "status": true
+},
+{
+  "id": "FF210",
+  "game": "Free Fire",
+  "nama": "210 Diamond Free Fire",
+  "kode": "FF210",
+  "harga_modal": 25542,
+  "harga_jual": 26900,
+  "status": true
+},
+{
+  "id": "FFM",
+  "game": "Free Fire",
+  "nama": "Member Mingguan Free Fire",
+  "kode": "FFM",
+  "harga_modal": 25800,
+  "harga_jual": 27500,
+  "status": true
+},
+{
+  "id": "FFOLD",
+  "game": "Free Fire",
+  "nama": "Member Bulanan Free Fire",
+  "kode": "FFOLD",
+  "harga_modal": 77400,
+  "harga_jual": 81000,
+  "status": true
+},
+{
+  "id": "FF280",
+  "game": "Free Fire",
+  "nama": "280 Diamond Free Fire",
+  "kode": "FF280",
+  "harga_modal": 34056,
+  "harga_jual": 35800,
+  "status": true
+},
+{
+  "id": "FF300",
+  "game": "Free Fire",
+  "nama": "300 Diamond Free Fire",
+  "kode": "FF300",
+  "harga_modal": 37152,
+  "harga_jual": 39000,
+  "status": true
+},
+{
+  "id": "FF355",
+  "game": "Free Fire",
+  "nama": "355 Diamond Free Fire",
+  "kode": "FF355",
+  "harga_modal": 42570,
+  "harga_jual": 44700,
+  "status": true
+},
+{
+  "id": "FF375",
+  "game": "Free Fire",
+  "nama": "375 Diamond Free Fire",
+  "kode": "FF375",
+  "harga_modal": 45666,
+  "harga_jual": 48000,
+  "status": true
+},
+{
+  "id": "FF405",
+  "game": "Free Fire",
+  "nama": "405 Diamond Free Fire",
+  "kode": "FF405",
+  "harga_modal": 48762,
+  "harga_jual": 51200,
+  "status": true
+},
+{
+  "id": "FF425",
+  "game": "Free Fire",
+  "nama": "425 Diamond Free Fire",
+  "kode": "FF425",
+  "harga_modal": 51084,
+  "harga_jual": 53600,
+  "status": true
+},
+{
+  "id": "FF475",
+  "game": "Free Fire",
+  "nama": "475 Diamond Free Fire",
+  "kode": "FF475",
+  "harga_modal": 57276,
+  "harga_jual": 60100,
+  "status": true
+},
+{
+  "id": "FF500",
+  "game": "Free Fire",
+  "nama": "500 Diamond Free Fire",
+  "kode": "FF500",
+  "harga_modal": 60372,
+  "harga_jual": 63400,
+  "status": true
+},
+{
+  "id": "FF515",
+  "game": "Free Fire",
+  "nama": "515 Diamond Free Fire",
+  "kode": "FF515",
+  "harga_modal": 62694,
+  "harga_jual": 65800,
+  "status": true
+},
+{
+  "id": "FF545",
+  "game": "Free Fire",
+  "nama": "545 Diamond Free Fire",
+  "kode": "FF545",
+  "harga_modal": 65790,
+  "harga_jual": 69000,
+  "status": true
+},
+{
+  "id": "FF565",
+  "game": "Free Fire",
+  "nama": "565 Diamond Free Fire",
+  "kode": "FF565",
+  "harga_modal": 68112,
+  "harga_jual": 71500,
+  "status": true
+},
+{
+  "id": "FF635",
+  "game": "Free Fire",
+  "nama": "635 Diamond Free Fire",
+  "kode": "FF635",
+  "harga_modal": 76626,
+  "harga_jual": 80500,
+  "status": true
+},
+{
+  "id": "FF720",
+  "game": "Free Fire",
+  "nama": "720 Diamond Free Fire",
+  "kode": "FF720",
+  "harga_modal": 85140,
+  "harga_jual": 89400,
+  "status": true
+},
+{
+  "id": "FF770",
+  "game": "Free Fire",
+  "nama": "770 Diamond Free Fire",
+  "kode": "FF770",
+  "harga_modal": 91332,
+  "harga_jual": 95900,
+  "status": true
+},
+{
+  "id": "FF790",
+  "game": "Free Fire",
+  "nama": "790 Diamond Free Fire",
+  "kode": "FF790",
+  "harga_modal": 93654,
+  "harga_jual": 98300,
+  "status": true
+},
+{
+  "id": "FF860",
+  "game": "Free Fire",
+  "nama": "860 Diamond Free Fire",
+  "kode": "FF860",
+  "harga_modal": 102168,
+  "harga_jual": 107300,
+  "status": true
+},
+{
+  "id": "FF930",
+  "game": "Free Fire",
+  "nama": "930 Diamond Free Fire",
+  "kode": "FF930",
+  "harga_modal": 110682,
+  "harga_jual": 116200,
+  "status": true
+},
+{
+  "id": "FF1000",
+  "game": "Free Fire",
+  "nama": "1000 Diamond Free Fire",
+  "kode": "FF1000",
+  "harga_modal": 119196,
+  "harga_jual": 125200,
+  "status": true
+},
+{
+  "id": "FF1075",
+  "game": "Free Fire",
+  "nama": "1075 Diamond Free Fire",
+  "kode": "FF1075",
+  "harga_modal": 127710,
+  "harga_jual": 134100,
+  "status": true
+},
+{
+  "id": "FF1440",
+  "game": "Free Fire",
+  "nama": "1440 Diamond Free Fire",
+  "kode": "FF1440",
+  "harga_modal": 170280,
+  "harga_jual": 178800,
+  "status": true
+},
+{
+  "id": "FF1490",
+  "game": "Free Fire",
+  "nama": "1490 Diamond Free Fire",
+  "kode": "FF1490",
+  "harga_modal": 176472,
+  "harga_jual": 185300,
+  "status": true
+},
+{
+  "id": "FF1510",
+  "game": "Free Fire",
+  "nama": "1510 Diamond Free Fire",
+  "kode": "FF1510",
+  "harga_modal": 178794,
+  "harga_jual": 187800,
+  "status": true
+},
+{
+  "id": "FF1580",
+  "game": "Free Fire",
+  "nama": "1580 Diamond Free Fire",
+  "kode": "FF1580",
+  "harga_modal": 187308,
+  "harga_jual": 196700,
+  "status": true
+},
+{
+  "id": "FF1795",
+  "game": "Free Fire",
+  "nama": "1795 Diamond Free Fire",
+  "kode": "FF1795",
+  "harga_modal": 212850,
+  "harga_jual": 223500,
+  "status": true
+},
+{
+  "id": "FF2000",
+  "game": "Free Fire",
+  "nama": "2000 Diamond Free Fire",
+  "kode": "FF2000",
+  "harga_modal": 238392,
+  "harga_jual": 250300,
+  "status": true
+},
+{
+  "id": "FF2160",
+  "game": "Free Fire",
+  "nama": "2160 Diamond Free Fire",
+  "kode": "FF2160",
+  "harga_modal": 255420,
+  "harga_jual": 268200,
+  "status": true
+},
+{
+  "id": "FF2190",
+  "game": "Free Fire",
+  "nama": "2190 Diamond Free Fire",
+  "kode": "FF2190",
+  "harga_modal": 260064,
+  "harga_jual": 273100,
+  "status": true
+},
+{
+  "id": "FF2280",
+  "game": "Free Fire",
+  "nama": "2280 Diamond Free Fire",
+  "kode": "FF2280",
+  "harga_modal": 270126,
+  "harga_jual": 283600,
+  "status": true
+},
+{
+  "id": "FF2355",
+  "game": "Free Fire",
+  "nama": "2355 Diamond Free Fire",
+  "kode": "FF2355",
+  "harga_modal": 279414,
+  "harga_jual": 293400,
+  "status": true
+},
+{
+  "id": "FF2720",
+  "game": "Free Fire",
+  "nama": "2720 Diamond Free Fire",
+  "kode": "FF2720",
+  "harga_modal": 323532,
+  "harga_jual": 339700,
+  "status": true
+}
+]
