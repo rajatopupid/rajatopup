@@ -56,27 +56,25 @@ Admin
 
 </header>
 
-
-
 <section class="hero">
 
-<h1>
+<div class="banner">
 
-Top Up Game
-Cepat & Otomatis
+<div>
 
-</h1>
+<h1>👑 RajaTopUp</h1>
 
-<p>
+<p>Top Up Game Otomatis • Cepat • Aman 24 Jam</p>
 
-Diamond masuk
-dalam hitungan detik
+<a class="btn" href="#productGrid">
+Top Up Sekarang
+</a>
 
-</p>
+</div>
+
+</div>
 
 </section>
-
-
 
 <section class="search">
 
@@ -94,6 +92,11 @@ onkeyup="filterProduct()"
 
 </section>
 
+<section class="category">
+
+<h2>🔥 Game Populer</h2>
+
+</section>
 
 
 <section
@@ -107,32 +110,23 @@ id="productGrid">
 
 <div class="card-header">
 
-<h3>
+<img
+src="/images/<%= (p.game || 'default').toLowerCase().replace(/\s+/g,'') %>.png"
+onerror="this.src='/images/default.png'">
 
-<%= p.nama %>
+<h3><%= p.nama %></h3>
 
-</h3>
-
-<p>
-
-<%= p.game %>
-
-</p>
+<p><%= p.game %></p>
 
 </div>
 
 <div class="card-body">
 
-<p>
-
-Harga
-
-</p>
+<small>Mulai Dari</small>
 
 <h2>
 
-Rp
-<%= Number(p.harga_jual || 0).toLocaleString("id-ID") %>
+Rp <%= Number(p.harga_jual || 0).toLocaleString("id-ID") %>
 
 </h2>
 
@@ -144,11 +138,9 @@ Rp
 class="btn"
 href="/product/<%= p.kode %>">
 
-Beli Sekarang
+Top Up
 
 </a>
-
-</form>
 
 </div>
 
@@ -159,6 +151,16 @@ Beli Sekarang
 </section>
 
 <footer>
+
+<h3>👑 RajaTopUp</h3>
+
+<p>
+
+Top Up Game Otomatis 24 Jam
+
+</p>
+
+<br>
 
 <p>
 
