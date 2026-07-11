@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pembayaran</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+<script
+src="https://app.midtrans.com/snap/snap.js"
+data-client-key="<%= process.env.MIDTRANS_CLIENT_KEY %>">
+</script>
+
+<style>
+
+body{
+background:#f5f7fb;
+font-family:Arial;
+}
+
+.container{
+max-width:500px;
+margin:40px auto;
+background:#fff;
+padding:25px;
+border-radius:18px;
+box-shadow:0 8px 25px rgba(0,0,0,.1);
+text-align:center;
+}
+
+button{
+width:100%;
+padding:15px;
+font-size:18px;
+border:none;
+border-radius:12px;
+background:#2563eb;
+color:#fff;
+cursor:pointer;
+margin-top:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Menunggu Pembayaran</h2>
+
+<p><b><%= order.nama_produk %></b></p>
+
+<h3>
+Rp <%= Number(order.harga).toLocaleString("id-ID") %>
+</h3>
+
+<button id="pay-button">
+
+Bayar Sekarang
+
+</button>
+
+</div>
+
+<script>
+
+document
+.getElementById("pay-button")
+.onclick=function(){
+
+snap.pay("<%= payment.token %>");
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+<%= settings.website || "RajaTopUp" %>
+</title>
+
+<link rel="stylesheet"
+href="/css/style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="logo">
+
+👑
+<%= settings.website || "RajaTopUp" %>
+
+</div>
+
+<nav>
+
+<a href="/">Home</a>
+
+<a href="/about">Tentang</a>
+
+<a href="/contact">Kontak</a>
+
+<a href="/faq">FAQ</a>
+
+<% if(admin){ %>
+
+<a href="/admin/dashboard">
+Dashboard
+</a>
+
+<% }else{ %>
+
+<a href="/admin/login">
+Admin
+</a>
+
+<% } %>
+
+</nav>
+
+</header>
+
+
+
+<section class="hero">
+
+<h1>
+
+Top Up Game
+Cepat & Otomatis
+
+</h1>
+
+<p>
+
+Diamond masuk
+dalam hitungan detik
+
+</p>
+
+</section>
+
+
+
+<section class="search">
+
+<input
+
+type="text"
+
+id="search"
+
+placeholder="Cari game..."
+
+onkeyup="filterProduct()"
+
+>
+
+</section>
+
+
+
+<section
+class="product-grid"
+
+id="productGrid">
+
+<% products.forEach(p=>{ %>
+
+<div class="card">
+
+<div class="card-header">
+
+<h3>
+
+<%= p.nama %>
+
+</h3>
+
+<p>
+
+<%= p.game %>
+
+</p>
+
+</div>
+
+<div class="card-body">
+
+<p>
+
+Harga
+
+</p>
+
+<h2>
+
+Rp
+<%= Number(p.harga_jual || 0).toLocaleString("id-ID") %>
+
+</h2>
+
+</div>
+
+<div class="card-footer">
+
+<a
+class="btn"
+href="/product/<%= p.kode %>">
+
+Beli Sekarang
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+<% }) %>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 RajaTopUp
+
+</p>
+
+</footer>
+
+<script>
+
+function filterProduct(){
+
+let keyword=document
+.getElementById("search")
+.value
+.toLowerCase();
+
+let cards=
+document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+let text=
+card.innerText
+.toLowerCase();
+
+card.style.display=
+text.includes(keyword)
+?"block":"none";
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>

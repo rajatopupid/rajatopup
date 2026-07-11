@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Kelola Produk
+
+</title>
+
+<link
+rel="stylesheet"
+href="/css/style.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<aside class="sidebar">
+
+<h2>
+
+👑 RajaTopUp
+
+</h2>
+
+<a href="/admin/dashboard">
+
+🏠 Dashboard
+
+</a>
+
+<a href="/admin/products">
+
+📦 Produk
+
+</a>
+
+<a href="/admin/product/add">
+
+➕ Tambah Produk
+
+</a>
+
+<a href="/">
+
+🌐 Website
+
+</a>
+
+</aside>
+
+<main class="content">
+
+<div class="topbar">
+
+<h1>
+
+Kelola Produk
+
+</h1>
+
+<a
+class="btn"
+href="/admin/product/add">
+
++ Tambah Produk
+
+</a>
+
+</div>
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>
+
+Game
+
+</th>
+
+<th>
+
+Produk
+
+</th>
+
+<th>
+
+Kode
+
+</th>
+
+<th>
+
+Modal
+
+</th>
+
+<th>
+
+Jual
+
+</th>
+
+<th>
+
+Status
+
+</th>
+
+<th>
+
+Aksi
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<% if(products.length===0){ %>
+
+<tr>
+
+<td
+colspan="7"
+style="text-align:center">
+
+Belum ada produk
+
+</td>
+
+</tr>
+
+<% } %>
+
+<% products.forEach(p=>{ %>
+
+<tr>
+
+<td>
+
+<%= p.game %>
+
+</td>
+
+<td>
+
+<%= p.nama %>
+
+</td>
+
+<td>
+
+<%= p.kode %>
+
+</td>
+
+<td>
+
+Rp
+<%= Number(
+p.harga_modal
+).toLocaleString("id-ID") %>
+
+</td>
+
+<td>
+
+Rp
+<%= Number(
+p.harga_jual
+).toLocaleString("id-ID") %>
+
+</td>
+
+<td>
+
+<% if(p.status){ %>
+
+<span class="badge-active">
+
+Aktif
+
+</span>
+
+<% }else{ %>
+
+<span class="badge-disable">
+
+Nonaktif
+
+</span>
+
+<% } %>
+
+</td>
+
+<td>
+
+<a
+class="btn-small"
+
+href="/admin/product/edit/<%= p.id %>">
+
+✏ Edit
+
+</a>
+
+<a
+class="btn-small-danger"
+
+onclick="return confirm('Hapus produk ini?')"
+
+href="/admin/product/delete/<%= p.id %>">
+
+🗑 Hapus
+
+</a>
+
+</td>
+
+</tr>
+
+<% }) %>
+
+</tbody>
+
+</table>
+
+</main>
+
+</div>
+
+</body>
+
+</html>

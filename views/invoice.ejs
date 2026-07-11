@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Invoice RajaTopUp</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+body{
+background:#f5f7fb;
+font-family:Arial,sans-serif;
+margin:0;
+padding:20px;
+}
+
+.card{
+max-width:500px;
+margin:auto;
+background:#fff;
+border-radius:18px;
+box-shadow:0 10px 30px rgba(0,0,0,.1);
+overflow:hidden;
+}
+
+.header{
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+padding:25px;
+color:#fff;
+text-align:center;
+}
+
+.header h1{
+margin:0;
+font-size:28px;
+}
+
+.body{
+padding:20px;
+}
+
+.row{
+display:flex;
+justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid #eee;
+}
+
+.row:last-child{
+border:none;
+}
+
+.label{
+color:#777;
+}
+
+.value{
+font-weight:bold;
+text-align:right;
+}
+
+.status{
+display:inline-block;
+padding:8px 16px;
+border-radius:30px;
+background:#facc15;
+color:#000;
+font-weight:bold;
+}
+
+.msg{
+margin-top:20px;
+padding:15px;
+background:#eef4ff;
+border-radius:10px;
+font-size:14px;
+line-height:1.6;
+}
+
+.btn{
+display:block;
+margin-top:25px;
+padding:15px;
+text-align:center;
+background:#2563eb;
+color:#fff;
+text-decoration:none;
+border-radius:12px;
+font-weight:bold;
+}
+
+.refresh{
+background:#16a34a;
+margin-bottom:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="header">
+
+<h1>Invoice RajaTopUp</h1>
+
+<p>Pesanan berhasil dibuat</p>
+
+</div>
+
+<div class="body">
+
+<div class="row">
+<span class="label">Ref ID</span>
+<span class="value"><%= order.ref_id %></span>
+</div>
+
+<div class="row">
+<span class="label">TRX ID</span>
+<span class="value"><%= api.data?.trx_id || "-" %></span>
+</div>
+
+<div class="row">
+<span class="label">Produk</span>
+<span class="value"><%= order.nama_produk %></span>
+</div>
+
+<div class="row">
+<span class="label">Pembayaran</span>
+<span class="value"><%= order.payment %></span>
+</div>
+
+<div class="row">
+<span class="label">ID Game</span>
+<span class="value"><%= order.tujuan %></span>
+</div>
+
+<div class="row">
+<span class="label">Harga</span>
+<span class="value">
+Rp <%= Number(order.harga).toLocaleString("id-ID") %>
+</span>
+</div>
+
+<div class="row">
+<span class="label">Status</span>
+
+<span class="status">
+
+<%= api.data?.status || order.status %>
+
+</span>
+
+</div>
+
+<div class="msg">
+
+<b>Pesan APIGames</b>
+
+<br><br>
+
+<%= api.data?.message || "Menunggu proses." %>
+
+</div>
+
+<a
+class="btn refresh"
+href="/status/<%= order.ref_id %>">
+
+🔄 Refresh Status
+
+</a>
+
+<a
+class="btn"
+href="/">
+
+🏠 Kembali ke Home
+
+</a>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title><%= product.nama %> | RajaTopUp</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+
+body{
+    margin:0;
+    background:#f5f7fb;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.container{
+    max-width:500px;
+    margin:20px auto;
+    padding:15px;
+}
+
+.card{
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    overflow:hidden;
+}
+
+.banner{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    text-align:center;
+    padding:25px;
+}
+
+.banner img{
+    width:70px;
+    height:70px;
+    border-radius:16px;
+    background:#fff;
+    padding:6px;
+    margin-bottom:10px;
+}
+
+.banner h2{
+    margin:8px 0;
+}
+
+.price{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.content{
+    padding:20px;
+}
+
+.section-title{
+    font-size:17px;
+    font-weight:bold;
+    margin:18px 0 10px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    box-sizing:border-box;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    margin-bottom:15px;
+    font-size:15px;
+}
+
+.summary{
+    background:#f8fafc;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.summary div{
+    display:flex;
+    justify-content:space-between;
+    margin:8px 0;
+}
+
+.btn{
+    width:100%;
+    border:none;
+    padding:16px;
+    border-radius:12px;
+    margin-top:20px;
+    font-size:17px;
+    font-weight:bold;
+    color:#fff;
+    cursor:pointer;
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+}
+
+.btn:hover{
+    opacity:.9;
+}
+
+.note{
+    margin-top:15px;
+    color:#666;
+    font-size:13px;
+    text-align:center;
+}
+
+.payment-list{
+display:flex;
+flex-direction:column;
+gap:12px;
+margin-top:15px;
+}
+
+.payment-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:15px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+.payment-item input{
+    width:20px;
+    height:20px;
+    margin:0;
+    flex:none;
+}
+
+.payment-item span{
+    background:none;
+    color:#222;
+    padding:0;
+    border-radius:0;
+    font-size:16px;
+    font-weight:600;
+}
+
+.payment-item.disabled{
+    justify-content:space-between;
+    opacity:.55;
+}
+
+.payment-item.disabled span{
+    color:#666;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="banner">
+
+<img src="/images/freefire.png">
+
+<h2><%= product.nama %></h2>
+
+<div class="price">
+
+Rp <%= Number(product.harga_jual).toLocaleString("id-ID") %>
+
+</div>
+
+</div>
+
+<div class="content">
+
+<form action="/checkout" method="POST">
+
+<input
+type="hidden"
+name="kode"
+value="<%= product.kode %>">
+
+<div class="section-title">
+
+🆔 Data Akun
+
+</div>
+
+<label>User ID Free Fire</label>
+
+<input
+type="text"
+name="tujuan"
+placeholder="Masukkan User ID"
+required>
+
+<input
+type="hidden"
+name="server_id"
+value="">
+
+<div class="section-title">
+
+📞 Kontak
+
+</div>
+
+<label>Email</label>
+
+<input
+type="email"
+name="email"
+placeholder="contoh@gmail.com">
+
+<label>WhatsApp</label>
+
+<input
+type="text"
+name="whatsapp"
+placeholder="08xxxxxxxxxx"
+required>
+
+<div class="summary">
+
+<div>
+
+<span>Produk</span>
+
+<strong><%= product.nama %></strong>
+
+</div>
+
+<div>
+    <span>Harga</span>
+    <strong>
+        Rp <%= Number(product.harga_jual).toLocaleString("id-ID") %>
+    </strong>
+</div>
+
+<h3 style="margin:20px 0 12px;">
+    Metode Pembayaran
+</h3>
+
+<div class="payment-list">
+
+<label class="payment-item">
+<input type="radio" name="payment" value="QRIS" required>
+<span>🟢 QRIS</span>
+</label>
+
+<label class="payment-item">
+<input type="radio" name="payment" value="DANA">
+<span>🔵 DANA</span>
+</label>
+
+<label class="payment-item">
+<input type="radio" name="payment" value="GOPAY">
+<span>🟦 GoPay</span>
+</label>
+
+<div class="payment-item disabled">
+<span>⚪ ShopeePay</span>
+<b>Coming Soon</b>
+</div>
+
+<div class="payment-item disabled">
+<span>⚪ Transfer Bank</span>
+<b>Coming Soon</b>
+</div>
+
+<div class="payment-item disabled">
+<span>⚪ Alfamart / Indomaret</span>
+<b>Coming Soon</b>
+</div>
+
+</div>
+
+</div>
+
+<button class="btn" type="submit">
+
+⚡ Bayar Sekarang
+
+</button>
+
+<div class="note">
+
+🔒 Transaksi aman & diproses otomatis 24 jam
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

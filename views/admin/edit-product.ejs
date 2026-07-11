@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+Edit Produk
+</title>
+
+<link
+rel="stylesheet"
+href="/css/style.css">
+
+</head>
+
+
+<body>
+
+
+<div class="admin-layout">
+
+
+<aside class="sidebar">
+
+<h2>
+👑 RajaTopUp
+</h2>
+
+
+<a href="/admin/dashboard">
+🏠 Dashboard
+</a>
+
+
+<a href="/admin/products">
+📦 Produk
+</a>
+
+
+<a href="/admin/product/add">
+➕ Tambah Produk
+</a>
+
+
+<a href="/">
+🌐 Website
+</a>
+
+
+</aside>
+
+
+
+<main class="content">
+
+
+<h1>
+✏ Edit Produk
+</h1>
+
+
+
+<form
+class="form"
+action="/admin/product/edit/<%= product.id %>"
+method="POST">
+
+
+
+<label>
+Nama Game
+</label>
+
+
+<input
+
+type="text"
+
+name="game"
+
+value="<%= product.game %>"
+
+required>
+
+
+
+<label>
+Nama Produk
+</label>
+
+
+<input
+
+type="text"
+
+name="nama"
+
+value="<%= product.nama %>"
+
+required>
+
+
+
+<label>
+Kode Produk
+</label>
+
+
+<input
+
+type="text"
+
+name="kode"
+
+value="<%= product.kode %>"
+
+required>
+
+
+
+<label>
+Harga Modal
+</label>
+
+
+<input
+
+type="number"
+
+name="harga_modal"
+
+value="<%= product.harga_modal %>"
+
+required>
+
+
+
+<label>
+Harga Jual
+</label>
+
+
+<input
+
+type="number"
+
+name="harga_jual"
+
+value="<%= product.harga_jual %>"
+
+required>
+
+
+
+<label>
+Status Produk
+</label>
+
+
+<select name="status">
+
+
+<option
+
+value="true"
+
+<%= product.status ? "selected" : "" %>>
+
+Aktif
+
+</option>
+
+
+<option
+
+value="false"
+
+<%= !product.status ? "selected" : "" %>>
+
+Nonaktif
+
+</option>
+
+
+</select>
+
+
+
+<div class="button-group">
+
+
+<button
+type="submit">
+
+💾 Simpan Perubahan
+
+</button>
+
+
+
+<a
+
+class="btn"
+
+href="/admin/products">
+
+← Kembali
+
+</a>
+
+
+</div>
+
+
+
+</form>
+
+
+</main>
+
+
+</div>
+
+
+</body>
+
+</html>

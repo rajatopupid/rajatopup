@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+
+Dashboard Admin
+
+</title>
+
+<link
+rel="stylesheet"
+href="/css/style.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<aside class="sidebar">
+
+<h2>
+
+👑 RajaTopUp
+
+</h2>
+
+<a href="/admin/dashboard">
+
+🏠 Dashboard
+
+</a>
+
+<a href="/admin/products">
+
+📦 Produk
+
+</a>
+
+<a href="/admin/product/add">
+
+➕ Tambah Produk
+
+</a>
+
+<a href="/">
+
+🌐 Website
+
+</a>
+
+<button
+onclick="logout()">
+
+🚪 Logout
+
+</button>
+
+</aside>
+
+<main class="content">
+
+<h1>
+
+Selamat Datang,
+<%= admin.name %>
+
+</h1>
+
+<div class="dashboard-grid">
+
+<div class="box">
+
+<h3>
+
+Total Produk
+
+</h3>
+
+<h2>
+
+<%= totalProduct %>
+
+</h2>
+
+</div>
+
+<div class="box">
+
+<h3>
+
+Total Order
+
+</h3>
+
+<h2>
+
+<%= totalOrder %>
+
+</h2>
+
+</div>
+
+<div class="box">
+
+<h3>
+
+Total Transaksi
+
+</h3>
+
+<h2>
+
+<%= totalTransaction %>
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="panel">
+
+<h2>
+
+Informasi Admin
+
+</h2>
+
+<table>
+
+<tr>
+
+<td>Nama</td>
+
+<td>
+
+<%= admin.name %>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Username</td>
+
+<td>
+
+<%= admin.username %>
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>Role</td>
+
+<td>
+
+<%= admin.role %>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="panel">
+
+<h2>
+
+Menu Cepat
+
+</h2>
+
+<a
+class="btn"
+href="/admin/products">
+
+Kelola Produk
+
+</a>
+
+<a
+class="btn"
+href="/admin/product/add">
+
+Tambah Produk
+
+</a>
+
+<a
+class="btn"
+href="/">
+
+Lihat Website
+
+</a>
+
+</div>
+
+</main>
+
+</div>
+
+<script>
+
+async function logout(){
+
+const req=await fetch(
+
+"/admin/logout",
+
+{
+
+method:"POST",
+
+credentials:"include"
+
+}
+
+);
+
+const res=await req.json();
+
+if(res.success){
+
+location.href="/admin/login";
+
+}
+
+}
+
+</script>
+
+</body>
+
+</html>
