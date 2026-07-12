@@ -5,7 +5,7 @@
     "nama": "5 Diamond Free Fire",
     "kode": "FF5",
     "harga_modal": 774,
-    "harga_jual": 900,
+    "harga_jual": 864,
     "status": true
   },
   {
@@ -14,7 +14,7 @@
     "nama": "10 Diamond Free Fire",
     "kode": "FF10",
     "harga_modal": 1548,
-    "harga_jual": 1800,
+    "harga_jual": 1664,
     "status": true
   },
   {
@@ -23,7 +23,7 @@
     "nama": "15 Diamond Free Fire",
     "kode": "FF15",
     "harga_modal": 2322,
-    "harga_jual": 2600,
+    "harga_jual": 2599,
     "status": true
   },
   {
@@ -32,7 +32,7 @@
     "nama": "20 Diamond Free Fire",
     "kode": "FF20",
     "harga_modal": 3096,
-    "harga_jual": 3400,
+    "harga_jual": 3399,
     "status": true
   },
   {
@@ -41,7 +41,7 @@
     "nama": "25 Diamond Free Fire",
     "kode": "FF25",
     "harga_modal": 3870,
-    "harga_jual": 4200,
+    "harga_jual": 4150,
     "status": true
   },
   {
@@ -50,7 +50,7 @@
     "nama": "30 Diamond Free Fire",
     "kode": "FF30",
     "harga_modal": 4644,
-    "harga_jual": 5000,
+    "harga_jual": 4999,
     "status": true
   },
   {
@@ -59,7 +59,7 @@
     "nama": "40 Diamond Free Fire",
     "kode": "FF40",
     "harga_modal": 6192,
-    "harga_jual": 6700,
+    "harga_jual": 6999,
     "status": true
   },
   {
@@ -68,7 +68,7 @@
     "nama": "50 Diamond Free Fire",
     "kode": "FF50",
     "harga_modal": 6192,
-    "harga_jual": 6700,
+    "harga_jual": 6900,
     "status": true
   },
   {
@@ -86,7 +86,7 @@
     "nama": "70 Diamond Free Fire",
     "kode": "FF70",
     "harga_modal": 8514,
-    "harga_jual": 9100,
+    "harga_jual": 9299,
     "status": true
   },
   {
@@ -104,7 +104,7 @@
     "nama": "80 Diamond Free Fire",
     "kode": "FF80",
     "harga_modal": 10062,
-    "harga_jual": 10700,
+    "harga_jual": 11000,
     "status": true
   },
   {
@@ -113,7 +113,7 @@
     "nama": "90 Diamond Free Fire",
     "kode": "FF90",
     "harga_modal": 11610,
-    "harga_jual": 12300,
+    "harga_jual": 12610,
     "status": true
   },
   {
@@ -122,7 +122,7 @@
     "nama": "100 Diamond Free Fire",
     "kode": "FF100",
     "harga_modal": 12384,
-    "harga_jual": 13100,
+    "harga_jual": 13800,
     "status": true
   },
   {
@@ -131,7 +131,7 @@
     "nama": "120 Diamond Free Fire",
     "kode": "FF120",
     "harga_modal": 14706,
-    "harga_jual": 15500,
+    "harga_jual": 16299,
     "status": true
   },
   {
@@ -140,7 +140,7 @@
     "nama": "140 Diamond Free Fire",
     "kode": "FF140",
     "harga_modal": 17028,
-    "harga_jual": 18000,
+    "harga_jual": 18699,
     "status": true
   },
   {
@@ -149,7 +149,7 @@
     "nama": "150 Diamond Free Fire",
     "kode": "FF150",
     "harga_modal": 18576,
-    "harga_jual": 19600,
+    "harga_jual": 20399,
     "status": true
   },
   {
@@ -158,7 +158,7 @@
     "nama": "160 Diamond Free Fire",
     "kode": "FF160",
     "harga_modal": 20124,
-    "harga_jual": 21200,
+    "harga_jual": 22199,
     "status": true
   },
   {
@@ -167,7 +167,7 @@
     "nama": "180 Diamond Free Fire",
     "kode": "FF180",
     "harga_modal": 22446,
-    "harga_jual": 23600,
+    "harga_jual": 24999,
     "status": true
   },
   {
@@ -176,7 +176,7 @@
     "nama": "190 Diamond Free Fire",
     "kode": "FF190",
     "harga_modal": 23220,
-    "harga_jual": 24400,
+    "harga_jual": 25600,
     "status": true
   },
 {
@@ -185,7 +185,7 @@
   "nama": "200 Diamond Free Fire",
   "kode": "FF200",
   "harga_modal": 24768,
-  "harga_jual": 26000,
+  "harga_jual": 27800,
   "status": true
 },
 {
@@ -194,7 +194,7 @@
   "nama": "210 Diamond Free Fire",
   "kode": "FF210",
   "harga_modal": 25542,
-  "harga_jual": 26900,
+  "harga_jual": 28000,
   "status": true
 },
 {
@@ -203,7 +203,7 @@
   "nama": "Member Mingguan Free Fire",
   "kode": "FFM",
   "harga_modal": 25800,
-  "harga_jual": 27500,
+  "harga_jual": 27800,
   "status": true
 },
 {
@@ -212,7 +212,7 @@
   "nama": "Member Bulanan Free Fire",
   "kode": "FFOLD",
   "harga_modal": 77400,
-  "harga_jual": 81000,
+  "harga_jual": 82400,
   "status": true
 },
 {
@@ -221,7 +221,7 @@
   "nama": "280 Diamond Free Fire",
   "kode": "FF280",
   "harga_modal": 34056,
-  "harga_jual": 35800,
+  "harga_jual": 37300,
   "status": true
 },
 {
@@ -230,7 +230,7 @@
   "nama": "300 Diamond Free Fire",
   "kode": "FF300",
   "harga_modal": 37152,
-  "harga_jual": 39000,
+  "harga_jual": 39900,
   "status": true
 },
 {
@@ -239,7 +239,7 @@
   "nama": "355 Diamond Free Fire",
   "kode": "FF355",
   "harga_modal": 42570,
-  "harga_jual": 44700,
+  "harga_jual": 46700,
   "status": true
 },
 {
@@ -248,7 +248,7 @@
   "nama": "375 Diamond Free Fire",
   "kode": "FF375",
   "harga_modal": 45666,
-  "harga_jual": 48000,
+  "harga_jual": 48800,
   "status": true
 },
 {
@@ -257,7 +257,7 @@
   "nama": "405 Diamond Free Fire",
   "kode": "FF405",
   "harga_modal": 48762,
-  "harga_jual": 51200,
+  "harga_jual": 54000,
   "status": true
 },
 {
@@ -266,7 +266,7 @@
   "nama": "425 Diamond Free Fire",
   "kode": "FF425",
   "harga_modal": 51084,
-  "harga_jual": 53600,
+  "harga_jual": 56000,
   "status": true
 },
 {
@@ -275,7 +275,7 @@
   "nama": "475 Diamond Free Fire",
   "kode": "FF475",
   "harga_modal": 57276,
-  "harga_jual": 60100,
+  "harga_jual": 63000,
   "status": true
 },
 {
@@ -284,7 +284,7 @@
   "nama": "500 Diamond Free Fire",
   "kode": "FF500",
   "harga_modal": 60372,
-  "harga_jual": 63400,
+  "harga_jual": 66300,
   "status": true
 },
 {
@@ -293,7 +293,7 @@
   "nama": "515 Diamond Free Fire",
   "kode": "FF515",
   "harga_modal": 62694,
-  "harga_jual": 65800,
+  "harga_jual": 68800,
   "status": true
 },
 {
@@ -302,7 +302,7 @@
   "nama": "545 Diamond Free Fire",
   "kode": "FF545",
   "harga_modal": 65790,
-  "harga_jual": 69000,
+  "harga_jual": 72400,
   "status": true
 },
 {
@@ -311,7 +311,7 @@
   "nama": "565 Diamond Free Fire",
   "kode": "FF565",
   "harga_modal": 68112,
-  "harga_jual": 71500,
+  "harga_jual": 74800,
   "status": true
 },
 {
@@ -320,7 +320,7 @@
   "nama": "635 Diamond Free Fire",
   "kode": "FF635",
   "harga_modal": 76626,
-  "harga_jual": 80500,
+  "harga_jual": 84100,
   "status": true
 },
 {
@@ -329,7 +329,7 @@
   "nama": "720 Diamond Free Fire",
   "kode": "FF720",
   "harga_modal": 85140,
-  "harga_jual": 89400,
+  "harga_jual": 93500,
   "status": true
 },
 {
@@ -338,7 +338,7 @@
   "nama": "770 Diamond Free Fire",
   "kode": "FF770",
   "harga_modal": 91332,
-  "harga_jual": 95900,
+  "harga_jual": 100000,
   "status": true
 },
 {
@@ -347,7 +347,7 @@
   "nama": "790 Diamond Free Fire",
   "kode": "FF790",
   "harga_modal": 93654,
-  "harga_jual": 98300,
+  "harga_jual": 103000,
   "status": true
 },
 {
@@ -356,7 +356,7 @@
   "nama": "860 Diamond Free Fire",
   "kode": "FF860",
   "harga_modal": 102168,
-  "harga_jual": 107300,
+  "harga_jual": 112200,
   "status": true
 },
 {
@@ -365,7 +365,7 @@
   "nama": "930 Diamond Free Fire",
   "kode": "FF930",
   "harga_modal": 110682,
-  "harga_jual": 116200,
+  "harga_jual": 122000,
   "status": true
 },
 {
@@ -374,7 +374,7 @@
   "nama": "1000 Diamond Free Fire",
   "kode": "FF1000",
   "harga_modal": 119196,
-  "harga_jual": 125200,
+  "harga_jual": 130900,
   "status": true
 },
 {
@@ -383,7 +383,7 @@
   "nama": "1075 Diamond Free Fire",
   "kode": "FF1075",
   "harga_modal": 127710,
-  "harga_jual": 134100,
+  "harga_jual": 140300,
   "status": true
 },
 {
@@ -392,7 +392,7 @@
   "nama": "1440 Diamond Free Fire",
   "kode": "FF1440",
   "harga_modal": 170280,
-  "harga_jual": 178800,
+  "harga_jual": 187100,
   "status": true
 },
 {
@@ -401,7 +401,7 @@
   "nama": "1490 Diamond Free Fire",
   "kode": "FF1490",
   "harga_modal": 176472,
-  "harga_jual": 185300,
+  "harga_jual": 193300,
   "status": true
 },
 {
@@ -410,7 +410,7 @@
   "nama": "1510 Diamond Free Fire",
   "kode": "FF1510",
   "harga_modal": 178794,
-  "harga_jual": 187800,
+  "harga_jual": 195800,
   "status": true
 },
 {
@@ -419,7 +419,7 @@
   "nama": "1580 Diamond Free Fire",
   "kode": "FF1580",
   "harga_modal": 187308,
-  "harga_jual": 196700,
+  "harga_jual": 204300,
   "status": true
 },
 {
@@ -428,7 +428,7 @@
   "nama": "1795 Diamond Free Fire",
   "kode": "FF1795",
   "harga_modal": 212850,
-  "harga_jual": 223500,
+  "harga_jual": 234000,
   "status": true
 },
 {
@@ -437,7 +437,7 @@
   "nama": "2000 Diamond Free Fire",
   "kode": "FF2000",
   "harga_modal": 238392,
-  "harga_jual": 250300,
+  "harga_jual": 260000,
   "status": true
 },
 {
@@ -446,7 +446,7 @@
   "nama": "2160 Diamond Free Fire",
   "kode": "FF2160",
   "harga_modal": 255420,
-  "harga_jual": 268200,
+  "harga_jual": 277900,
   "status": true
 },
 {
@@ -455,7 +455,7 @@
   "nama": "2190 Diamond Free Fire",
   "kode": "FF2190",
   "harga_modal": 260064,
-  "harga_jual": 273100,
+  "harga_jual": 278700,
   "status": true
 },
 {
@@ -463,8 +463,8 @@
   "game": "Free Fire",
   "nama": "2280 Diamond Free Fire",
   "kode": "FF2280",
-  "harga_modal": 270126,
-  "harga_jual": 283600,
+  "harga_modal": 289126,
+  "harga_jual": 295800,
   "status": true
 },
 {
@@ -473,7 +473,7 @@
   "nama": "2355 Diamond Free Fire",
   "kode": "FF2355",
   "harga_modal": 279414,
-  "harga_jual": 293400,
+  "harga_jual": 305000,
   "status": true
 },
 {
@@ -482,7 +482,7 @@
   "nama": "2720 Diamond Free Fire",
   "kode": "FF2720",
   "harga_modal": 323532,
-  "harga_jual": 339700,
+  "harga_jual": 353200,
   "status": true
 }
 ]
