@@ -22,8 +22,7 @@ href="/css/style.css">
 <header class="topbar">
 
     <div class="topbar-left">
-        <button class="menu-btn">☰</button>
-        <a href="/login">Masuk</a>
+        <button class="menu-btn" id="menuBtn">☰</button>
     </div>
 
     <div class="topbar-logo">
@@ -32,34 +31,32 @@ href="/css/style.css">
 
     <div class="topbar-right">
         <button class="notif-btn">🔔</button>
-        <a href="/register">Daftar</a>
     </div>
 
 </header>
 
-<!-- Sidebar -->
 <div class="sidebar-menu" id="sidebarMenu">
 
-    <button class="close-btn" id="closeBtn">✕</button>
+    <div class="menu-top">
+        <h2>👑 RajaTopUp</h2>
+        <button class="close-btn" id="closeBtn">✕</button>
+    </div>
 
     <a href="/">🏠 Beranda</a>
-
-    <a href="#">🎮 Free Fire</a>
-
+    <a href="/">🎮 Free Fire</a>
     <a href="#">📜 Riwayat Pesanan</a>
-
     <a href="#">💳 Cek Status Pembayaran</a>
-
     <a href="#">🎁 Promo & Voucher</a>
 
-    <a href="/login">👤 Login</a>
+    <hr>
 
+    <a href="/login">🔑 Masuk</a>
     <a href="/register">📝 Daftar</a>
 
-    <a href="https://wa.me/6283172927610">📞 Hubungi Admin</a>
+    <hr>
 
+    <a href="#">📞 Hubungi Admin</a>
     <a href="#">❓ Bantuan / FAQ</a>
-
     <a href="#">ℹ️ Tentang RajaTopUp</a>
 
 </div>
@@ -190,6 +187,28 @@ dots[current].classList.add("active");
 
 },4000);
 
+</script>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const closeBtn = document.getElementById("closeBtn");
+const sidebar = document.getElementById("sidebarMenu");
+const overlay = document.getElementById("menuOverlay");
+
+menuBtn.addEventListener("click", () => {
+    sidebar.classList.add("active");
+    overlay.classList.add("active");
+});
+
+closeBtn.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+});
+
+overlay.addEventListener("click", () => {
+    sidebar.classList.remove("active");
+    overlay.classList.remove("active");
+});
 </script>
 
 </body>
