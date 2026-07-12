@@ -16,30 +16,54 @@ data-client-key="<%= process.env.MIDTRANS_CLIENT_KEY %>">
 <style>
 
 body{
-background:#f5f7fb;
-font-family:Arial;
+    margin:0;
+    background:#111;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
 }
 
 .container{
-max-width:500px;
-margin:40px auto;
-background:#fff;
-padding:25px;
-border-radius:18px;
-box-shadow:0 8px 25px rgba(0,0,0,.1);
-text-align:center;
+    max-width:500px;
+    margin:40px auto;
+    background:#1b1b1b;
+    border:1px solid #333;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,.4);
+    text-align:center;
+}
+
+h2{
+    font-size:32px;
+    margin-bottom:10px;
+}
+
+p{
+    color:#bbb;
+    font-size:18px;
+}
+
+h3{
+    color:#f7c948;
+    font-size:40px;
+    margin:15px 0;
 }
 
 button{
-width:100%;
-padding:15px;
-font-size:18px;
-border:none;
-border-radius:12px;
-background:#2563eb;
-color:#fff;
-cursor:pointer;
-margin-top:20px;
+    width:100%;
+    padding:16px;
+    font-size:18px;
+    font-weight:bold;
+    border:none;
+    border-radius:14px;
+    background:#f7c948;
+    color:#111;
+    cursor:pointer;
+    margin-top:25px;
+}
+
+button:hover{
+    opacity:.9;
 }
 
 </style>
@@ -50,7 +74,7 @@ margin-top:20px;
 
 <div class="container">
 
-<h2>Menunggu Pembayaran</h2>
+<h2>⏳ Menunggu Pembayaran</h2>
 
 <p><b><%= order.nama_produk %></b></p>
 
@@ -58,10 +82,16 @@ margin-top:20px;
 Rp <%= Number(order.harga).toLocaleString("id-ID") %>
 </h3>
 
+<hr style="border:1px solid #333;margin:25px 0;">
+
+<p>Status : <span style="color:#f7c948;"><b>Belum Dibayar</b></span></p>
+
+<p>Metode : <b>Midtrans</b></p>
+
+<p>Pesanan akan diproses otomatis setelah pembayaran berhasil.</p>
+
 <button id="pay-button">
-
-Bayar Sekarang
-
+💳 Bayar Sekarang
 </button>
 
 </div>
