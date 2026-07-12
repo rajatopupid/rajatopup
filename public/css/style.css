@@ -800,24 +800,32 @@ RESPONSIVE MOBILE
     }
 
 
-
 .topbar{
-    flex-direction:row;
+    position:relative;
+    display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:0;
+    padding:12px 16px;
+    background:#111;
+}
+
+.topbar-logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:20px;
+    font-weight:800;
 }
 
 .topbar-left,
 .topbar-right{
     display:flex;
     align-items:center;
-    gap:8px;
-}
-
-.topbar-logo{
-    flex:1;
-    text-align:center;
+    gap:10px;
+    z-index:2;
 }
 
 
