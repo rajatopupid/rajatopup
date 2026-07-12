@@ -125,47 +125,74 @@ input{
     text-align:center;
 }
 
+/* ===========================
+   PAYMENT PREMIUM
+=========================== */
+
+.payment-title{
+    font-size:22px;
+    font-weight:700;
+    margin:25px 0 15px;
+    color:#222;
+}
+
 .payment-list{
-display:flex;
-flex-direction:column;
-gap:12px;
-margin-top:15px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
 }
 
 .payment-item{
     display:flex;
     align-items:center;
-    gap:12px;
-    padding:15px;    
-    background:#1a1a1a;
-    border:1px solid #444;
-    border-radius:12px;
+    gap:15px;
+    background:#fff;
+    border:2px solid #e5e7eb;
+    border-radius:16px;
+    padding:14px 16px;
     cursor:pointer;
+    transition:.25s;
+}
+
+.payment-item:hover{
+    border-color:#f7c948;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
 
 .payment-item input{
-    width:20px;
-    height:20px;
-    margin:0;
-    flex:none;
+    accent-color:#f7c948;
+    width:18px;
+    height:18px;
+}
+
+.payment-item img{
+    width:42px;
+    height:42px;
+    object-fit:contain;
 }
 
 .payment-item span{
-    background:none;
-    color:#fff;
-    padding:0;
-    border-radius:0;
+    flex:1;
     font-size:16px;
     font-weight:600;
 }
 
-.payment-item.disabled{
-    justify-content:space-between;
-    opacity:.55;
+.payment-item:has(input:checked){
+    border-color:#f7c948;
+    background:#fffdf4;
+    box-shadow:0 0 12px rgba(247,201,72,.35);
 }
 
-.payment-item.disabled span{
-    color:#999;
+.payment-item::after{
+    content:"✔";
+    color:#f7c948;
+    font-weight:bold;
+    opacity:0;
+    transition:.25s;
+}
+
+.payment-item:has(input:checked)::after{
+    opacity:1;
 }
 
 </style>
@@ -258,41 +285,57 @@ required>
     </strong>
 </div>
 
-<h3 style="margin:20px 0 12px;">
-    Metode Pembayaran
-</h3>
+<h3 class="payment-title">💳 Metode Pembayaran</h3>
 
 <div class="payment-list">
 
-<label class="payment-item">
-<input type="radio" name="payment" value="QRIS" required>
-<span>🟢 QRIS</span>
-</label>
+    <label class="payment-item">
+        <input type="radio" name="payment" value="qris" checked>
+        <img src="/images/payment/qris.png" alt="QRIS">
+        <span>QRIS</span>
+    </label>
 
-<label class="payment-item">
-<input type="radio" name="payment" value="DANA">
-<span>🔵 DANA</span>
-</label>
+    <label class="payment-item">
+        <input type="radio" name="payment" value="gopay">
+        <img src="/images/payment/gopay.png" alt="GoPay">
+        <span>GoPay</span>
+    </label>
 
-<label class="payment-item">
-<input type="radio" name="payment" value="GOPAY">
-<span>🟦 GoPay</span>
-</label>
+    <label class="payment-item">
+        <input type="radio" name="payment" value="dana">
+        <img src="/images/payment/dana.png" alt="DANA">
+        <span>DANA</span>
+    </label>
 
-<div class="payment-item disabled">
-<span>⚪ ShopeePay</span>
-<b>Coming Soon</b>
-</div>
+    <label class="payment-item">
+        <input type="radio" name="payment" value="mandiri">
+        <img src="/images/payment/mandiri.png" alt="Mandiri">
+        <span>Mandiri Virtual Account</span>
+    </label>
 
-<div class="payment-item disabled">
-<span>⚪ Transfer Bank</span>
-<b>Coming Soon</b>
-</div>
+    <label class="payment-item">
+        <input type="radio" name="payment" value="bni">
+        <img src="/images/payment/bni.png" alt="BNI">
+        <span>BNI Virtual Account</span>
+    </label>
 
-<div class="payment-item disabled">
-<span>⚪ Alfamart / Indomaret</span>
-<b>Coming Soon</b>
-</div>
+    <label class="payment-item">
+        <input type="radio" name="payment" value="bsi">
+        <img src="/images/payment/bsi.png" alt="BSI">
+        <span>Bank Syariah Indonesia</span>
+    </label>
+
+    <label class="payment-item">
+        <input type="radio" name="payment" value="seabank">
+        <img src="/images/payment/seabank.png" alt="SeaBank">
+        <span>SeaBank</span>
+    </label>
+
+    <label class="payment-item">
+        <input type="radio" name="payment" value="alfamart">
+        <img src="/images/payment/alfamart.png" alt="Alfamart">
+        <span>Alfamart</span>
+    </label>
 
 </div>
 
