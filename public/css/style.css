@@ -1223,37 +1223,57 @@ transform:translateY(0);
 }
 
 .ff-banner{
-    margin:16px;
-    background:linear-gradient(135deg,#111,#222);
-    border:2px solid #f7c948;
-    border-radius:18px;
+    position:relative;
+    width:calc(100% - 20px);
+    margin:10px;
+    height:320px;
     overflow:hidden;
-    text-align:center;
-    box-shadow:0 10px 25px rgba(0,0,0,.35);
+    border-radius:28px;
+    border:2px solid #f7c948;
 }
 
 .ff-banner img{
+    position:absolute;
+    inset:0;
     width:100%;
-    height:180px;
+    height:100%;
     object-fit:cover;
-    display:block;
 }
 
-.ff-text{
-    padding:18px;
+.ff-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.35),
+        rgba(0,0,0,.05),
+        rgba(0,0,0,.55)
+    );
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+
+    padding-top:25px;
+    text-align:center;
 }
 
-.ff-text span{
+.ff-overlay h2{
+    color:#fff;
+    font-size:32px;
+    margin:8px 0;
+    font-weight:800;
+}
+
+.ff-overlay p{
+    color:#fff;
+    font-size:16px;
+}
+
+.ff-overlay span{
     color:#f7c948;
+    font-size:18px;
     font-weight:700;
 }
 
-.ff-text h2{
-    color:#fff;
-    margin:10px 0 8px;
-}
-
-.ff-text p{
-    color:#bbb;
-    margin:0;
-}
