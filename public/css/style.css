@@ -979,35 +979,30 @@ transform:scale(1.03);
 }
 
 .topbar{
-
-height:70px;
-
-padding:0 20px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-background:#111;
-
-color:#fff;
-
-position:sticky;
-
-top:0;
-
-z-index:999;
-
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:12px 16px;
+    background:#111;
+    color:#fff;
 }
 
-.menu-right{
+.left-menu,
+.right-menu{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
 
-display:flex;
+.logo{
+    font-size:18px;
+    font-weight:700;
+}
 
-gap:10px;
-
+.topbar a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
 }
 
 .menu-right button{
