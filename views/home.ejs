@@ -20,6 +20,39 @@ href="/css/style.css">
 
 <body>
 
+<!-- SPLASH PREMIUM -->
+<div id="splashScreen">
+
+    <div class="splash-content">
+
+        <div id="splashLogo">👑</div>
+
+        <h1 id="splashTitle"></h1>
+
+        <div class="loading-area">
+
+            <div class="loading-text">
+                <span>Loading...</span>
+                <span id="loadingPercent">0%</span>
+            </div>
+
+            <div class="loading-line">
+                <div id="loadingFill"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- WELCOME OVERLAY -->
+<div id="welcomeOverlay">
+
+    <div id="welcomeText"></div>
+
+</div>
+
 <header class="topbar">
 
     <div class="topbar-left">
@@ -211,6 +244,149 @@ overlay.addEventListener("click", () => {
     sidebar.classList.remove("active");
     overlay.classList.remove("active");
 });
+</script>
+
+<script>
+
+if(!localStorage.getItem("rt_splash")){
+
+const splash=document.getElementById("splashScreen");
+const title=document.getElementById("splashTitle");
+const percent=document.getElementById("loadingPercent");
+const fill=document.getElementById("loadingFill");
+
+const text="RajaTopUp";
+
+let delay=0;
+
+for(let i=0;i<text.length;i++){
+
+setTimeout(()=>{
+
+const span=document.createElement("span");
+
+span.innerHTML=text[i];
+
+span.style.animation="flyLetter .45s forwards";
+
+span.style.margin="0 1px";
+
+title.appendChild(span);
+
+},delay);
+
+delay+=120;
+
+}
+
+let p=0;
+
+const loading=setInterval(()=>{
+
+p++;
+
+percent.innerHTML=p+"%";
+
+fill.style.width=p+"%";
+
+if(p>=100){
+
+clearInterval(loading);
+
+setTimeout(showWelcome,500);
+
+}
+
+},30);
+
+function showWelcome(){
+
+splash.classList.add("hideSplash");
+
+const overlay=document.getElementById("welcomeOverlay");
+
+const box=document.getElementById("welcomeText");
+
+overlay.style.display="flex";
+
+const msg=[
+"Selamat Datang di",
+"👑 RajaTopUp",
+"Selamat Berbelanja"
+];
+
+let line=0;
+
+function nextLine(){
+
+if(line>=msg.length){
+
+setTimeout(()=>{
+
+overlay.style.transition=".6s";
+
+overlay.style.opacity="0";
+
+setTimeout(()=>{
+
+overlay.remove();
+
+localStorage.setItem("rt_splash","done");
+
+},600);
+
+},4000);
+
+return;
+
+}
+
+const div=document.createElement("div");
+
+box.appendChild(div);
+
+let i=0;
+
+const huruf=setInterval(()=>{
+
+if(i>=msg[line].length){
+
+clearInterval(huruf);
+
+line++;
+
+setTimeout(nextLine,300);
+
+return;
+
+}
+
+const span=document.createElement("span");
+
+span.innerHTML=msg[line][i]==" " ? "&nbsp;" : msg[line][i];
+
+span.style.animation="flyLetter .35s forwards";
+
+div.appendChild(span);
+
+i++;
+
+},45);
+
+}
+
+nextLine();
+
+}
+
+}else{
+
+document.getElementById("splashScreen").remove();
+
+document.getElementById("welcomeOverlay").remove();
+
+}
+
 </script>
 
 </body>

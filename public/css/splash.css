@@ -1,0 +1,196 @@
+/* ==========================
+   RAJATOPUP SPLASH PREMIUM
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    overflow:hidden;
+    background:#000;
+}
+
+.splash{
+    position:fixed;
+    inset:0;
+    background:
+    radial-gradient(circle at top,#2a2a2a,#000);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.logo{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+#crown{
+    font-size:60px;
+    margin-bottom:15px;
+    opacity:0;
+    transform:translateY(-60px);
+    animation:crownShow .8s forwards;
+}
+
+#logoText{
+    display:flex;
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+#logoText span{
+    display:inline-block;
+    opacity:0;
+    color:#f7c948;
+    text-shadow:
+        0 0 8px rgba(247,201,72,.3);
+}
+
+.loading-box{
+    width:320px;
+    margin-top:60px;
+}
+
+.loading-text{
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+    font-size:15px;
+}
+
+.loading{
+    width:100%;
+    height:8px;
+    background:#222;
+    border-radius:30px;
+    overflow:hidden;
+}
+
+#loadingBar{
+    width:0%;
+    height:100%;
+    border-radius:30px;
+    background:linear-gradient(
+        90deg,
+        #f7c948,
+        #fff3a0,
+        #f7c948
+    );
+    box-shadow:0 0 12px #f7c948;
+}
+
+@keyframes crownShow{
+
+0%{
+opacity:0;
+transform:translateY(-60px) scale(.5);
+}
+
+100%{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
+}
+
+@keyframes flyLeft{
+
+0%{
+opacity:0;
+transform:translateX(-180px)
+rotate(-30deg);
+}
+
+100%{
+opacity:1;
+transform:translateX(0)
+rotate(0);
+}
+
+}
+
+@keyframes flyRight{
+
+0%{
+opacity:0;
+transform:translateX(180px)
+rotate(30deg);
+}
+
+100%{
+opacity:1;
+transform:translateX(0)
+rotate(0);
+}
+
+}
+
+@keyframes flyTop{
+
+0%{
+opacity:0;
+transform:translateY(-150px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes flyBottom{
+
+0%{
+opacity:0;
+transform:translateY(150px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@keyframes shine{
+
+0%{
+text-shadow:0 0 0 #f7c948;
+}
+
+50%{
+text-shadow:
+0 0 12px #f7c948,
+0 0 22px #f7c948;
+}
+
+100%{
+text-shadow:0 0 0 #f7c948;
+}
+
+}
+
+.fade-out{
+    animation:fadeOut .6s forwards;
+}
+
+@keyframes fadeOut{
+
+to{
+
+opacity:0;
+visibility:hidden;
+
+}
+
+}

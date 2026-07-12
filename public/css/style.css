@@ -1411,3 +1411,145 @@ LOGO PREMIUM
         filter:drop-shadow(0 0 8px #f7c948);
     }
 }
+
+/* ==================================
+   SPLASH SCREEN PREMIUM
+================================== */
+
+#splashScreen{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle,#1b1b1b,#000);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:99999;
+    transition:.8s;
+}
+
+.splash-content{
+    text-align:center;
+}
+
+#splashLogo{
+    font-size:70px;
+    margin-bottom:20px;
+    color:#f7c948;
+    text-shadow:0 0 20px #f7c948;
+    animation:crownGlow 2s infinite;
+}
+
+#splashTitle{
+    font-size:44px;
+    font-weight:800;
+    color:#f7c948;
+    min-height:55px;
+    letter-spacing:2px;
+}
+
+#splashTitle span{
+    display:inline-block;
+    opacity:0;
+}
+
+.loading-area{
+    margin-top:55px;
+    width:320px;
+    max-width:90%;
+}
+
+.loading-text{
+    display:flex;
+    justify-content:space-between;
+    color:#fff;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+.loading-line{
+    width:100%;
+    height:8px;
+    background:#333;
+    border-radius:50px;
+    overflow:hidden;
+}
+
+#loadingFill{
+    width:0%;
+    height:100%;
+    background:linear-gradient(90deg,#f7c948,#fff6b0,#f7c948);
+    border-radius:50px;
+    box-shadow:0 0 15px #f7c948;
+}
+
+/* ===========================
+WELCOME
+=========================== */
+
+#welcomeOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.30);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:99998;
+}
+
+#welcomeText{
+    text-align:center;
+    color:#fff;
+    font-size:36px;
+    font-weight:bold;
+    line-height:1.7;
+}
+
+#welcomeText span{
+    display:inline-block;
+    opacity:0;
+}
+
+/* ===========================
+ANIMATION
+=========================== */
+
+@keyframes flyLetter{
+
+0%{
+opacity:0;
+transform:
+translateY(-120px)
+scale(.3)
+rotate(-180deg);
+}
+
+100%{
+opacity:1;
+transform:
+translateY(0)
+scale(1)
+rotate(0);
+}
+
+}
+
+@keyframes crownGlow{
+
+0%,100%{
+transform:scale(1);
+text-shadow:0 0 8px #f7c948;
+}
+
+50%{
+transform:scale(1.12);
+text-shadow:
+0 0 15px #f7c948,
+0 0 35px #f7c948;
+}
+
+}
+
+.hideSplash{
+    opacity:0;
+    visibility:hidden;
+}
