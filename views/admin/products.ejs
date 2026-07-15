@@ -153,40 +153,24 @@ Belum ada produk
 
 <tr>
 
-<td>
-
-<%= p.game %>
-
+<td style="color:#000">
+<%= String(p.game) %>
 </td>
 
-<td>
-
-<%= p.nama %>
-
+<td style="color:#000">
+<%= String(p.nama) %>
 </td>
 
-<td>
-
-<%= p.kode %>
-
+<td style="color:#000">
+<%= String(p.kode) %>
 </td>
 
-<td>
-
-Rp
-<%= Number(
-p.harga_modal
-).toLocaleString("id-ID") %>
-
+<td style="color:#000">
+Rp <%= p.harga_modal %>
 </td>
 
-<td>
-
-Rp
-<%= Number(
-p.harga_jual
-).toLocaleString("id-ID") %>
-
+<td style="color:#000">
+Rp <%= p.harga_jual %>
 </td>
 
 <td>

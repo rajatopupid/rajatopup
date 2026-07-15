@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": "1784088052937",
+    "username": "RajaTopUp001408",
+    "email": "rahmadaja0085@gmail.com",
+    "password": "0085",
+    "role": "admin",
+    "createdAt": "2026-07-15T04:00:52.937Z"
+  },
+  {
+    "id": "1784093706847",
+    "username": "Seijuro",
+    "email": "rahmadaja@gmail.com",
+    "password": "11",
+    "role": "user",
+    "createdAt": "2026-07-15T05:35:06.848Z"
+  }
+]

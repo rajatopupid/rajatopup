@@ -127,6 +127,10 @@ app.use(session({
 
 }));
 
+app.use((req, res, next) => {
+    res.locals.user = req.session.user || null;
+    next();
+});
 
 // =========================
 // STATIC
@@ -161,8 +165,12 @@ app.locals.process = process;
 
 function isAdmin(req, res, next) {
 
-    if (!req.session.admin) {
-        return res.redirect("/admin/login");
+    if (!req.session.user) {
+        return res.redirect("/login");
+    }
+
+    if (req.session.user.role !== "admin") {
+        return res.status(403).send("403 - Akses Ditolak");
     }
 
     next();
@@ -210,6 +218,109 @@ app.get("/", async (req, res) => {
 });
 
 
+app.get("/register", (req, res) => {
+    res.render("register");
+});
+
+app.post("/register", (req, res) => {
+
+    const { username, email, password, confirmPassword } = req.body;
+
+    if (!username || !email || !password || !confirmPassword) {
+        return res.send("Semua data wajib diisi.");
+    }
+
+    if (password !== confirmPassword) {
+        return res.send("Konfirmasi password tidak cocok.");
+    }
+
+    const usersFile = path.join(__dirname, "database", "users.json");
+
+    let users = [];
+
+    if (fs.existsSync(usersFile)) {
+        users = JSON.parse(fs.readFileSync(usersFile, "utf8"));
+    }
+
+    if (users.some(u => u.username.toLowerCase() === username.toLowerCase())) {
+        return res.send("Username sudah digunakan.");
+    }
+
+    if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+        return res.send("Email sudah digunakan.");
+    }
+
+    users.push({
+        id: Date.now().toString(),
+        username,
+        email,
+        password,
+        role: "user",
+        createdAt: new Date().toISOString()
+    });
+
+    fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
+
+    res.redirect("/login");
+});
+
+app.get("/login", (req, res) => {
+    res.render("login");
+});
+
+app.post("/login", (req, res) => {
+
+    const { username, password } = req.body;
+
+    const usersFile = path.join(__dirname, "database", "users.json");
+
+    if (!fs.existsSync(usersFile)) {
+        return res.send("Belum ada akun.");
+    }
+
+    const users = JSON.parse(fs.readFileSync(usersFile, "utf8"));
+
+    const user = users.find(u =>
+        u.username === username &&
+        u.password === password
+    );
+
+    if (!user) {
+        return res.send("Username atau password salah.");
+    }
+
+    req.session.user = user;
+
+    res.redirect("/");
+
+});
+
+app.get("/profile", (req, res) => {
+
+    if (!req.session.user) {
+        return res.redirect("/login");
+    }
+
+    res.render("profile", {
+        user: req.session.user
+    });
+
+});
+
+app.get("/logout", (req, res) => {
+    req.session.destroy(() => {
+        res.redirect("/");
+    });
+});
+
+app.get("/faq", (req, res) => {
+    res.render("faq");
+});
+
+app.get("/about", (req, res) => {
+    res.render("about");
+});
+
 // =========================
 // ADMIN LOGIN
 // =========================
@@ -229,28 +340,21 @@ app.get("/admin/login", (req, res) => {
 // ADMIN DASHBOARD
 // =========================
 
-app.get("/admin/dashboard", isAdmin, async (req, res) => {
+app.get("/admin", isAdmin, async (req, res) => {
 
     const products = await read(PRODUCTS);
-
+    const users = await read(USERS);
     const orders = await read(ORDERS);
 
-    const transactions = await read(TRANSACTIONS);
-
     res.render("admin/dashboard", {
-
-        admin: req.session.admin,
-
+        admin: req.session.user,
         totalProduct: products.length,
-
+        totalUser: users.length,
         totalOrder: orders.length,
-
-        totalTransaction: transactions.length
-
+        totalTransaction: orders.length
     });
 
 });
-
 
 // =========================
 // ADMIN PRODUCTS
@@ -598,7 +702,6 @@ app.use((req, res) => {
     res.status(404).send("404 - Halaman tidak ditemukan");
 
 });
-
 
 // =========================
 // ERROR HANDLER

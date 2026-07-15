@@ -83,25 +83,49 @@ href="/css/style.css">
     <a href="#">💳 Cek Status Pembayaran</a>
     <a href="#">🎁 Promo & Voucher</a>
 
-    <hr>
+<hr>
 
-    <a href="/login">🔑 Masuk</a>
-    <a href="/register">📝 Daftar</a>
+<% if (!user) { %>
 
-    <hr>
+<a href="/login">🔑 Masuk</a>
+<a href="/register">📝 Daftar</a>
 
-    <a href="#">📞 Hubungi Admin</a>
-    <a href="#">❓ Bantuan / FAQ</a>
-    <a href="#">ℹ️ Tentang RajaTopUp</a>
+<% } else { %>
+
+<div style="padding:12px;color:#f7c948;font-weight:bold;">
+👋 Halo, <%= user.username %>
+</div>
+
+<a href="/profile">👤 Profil Saya</a>
+
+<% if(user.role === "admin"){ %>
+
+<a href="/admin">👑 Dashboard Admin</a>
+
+<% } %>
+
+<a href="/logout">🚪 Logout</a>
+
+<% } %>
+
+<hr>
+
+<a href="https://wa.me/6283172927610" target="_blank">
+📞 Hubungi Admin
+</a>
+<a href="/faq">
+❓ Bantuan / FAQ
+</a>
+<a href="/about">
+ℹ️ Tentang RajaTopUp
+</a>
 
 </div>
 
 <div class="menu-overlay" id="menuOverlay"></div>
 
-<section class="ff-banner">
-    <img src="/images/freefire1.png" alt="Free Fire Banner">
-    <div class="ff-overlay">
-    </div>
+<section class="banner-slider">
+    <img id="bannerImage" src="/images/freefire1.png" alt="Banner">
 </section>
 
 </section>
@@ -384,6 +408,22 @@ document.getElementById("welcomeOverlay").remove();
 
 }
 
+</script>
+
+<script>
+const banners = [
+    "/images/freefire1.png",
+    "/images/freefire2.png",
+    "/images/freefire3.png",
+    "/images/freefire4.png"
+];
+
+let index = 0;
+
+setInterval(() => {
+    index = (index + 1) % banners.length;
+    document.getElementById("bannerImage").src = banners[index];
+}, 5000);
 </script>
 
 </body>
