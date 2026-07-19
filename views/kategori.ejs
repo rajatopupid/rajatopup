@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title><%= game %> - RajaTopUp</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+
+<h1>
+🔥 <%= game %>
+</h1>
+
+
+<div class="product-grid">
+
+<% products.forEach(p=>{ %>
+
+
+<div class="product-card">
+
+<h2>
+<%= p.nama %>
+</h2>
+
+<p>
+<%= p.kode %>
+</p>
+
+
+<h3>
+Rp <%= Number(p.harga_jual)
+.toLocaleString("id-ID") %>
+</h3>
+
+
+<a href="/buy/<%=p.id%>"
+class="btn">
+
+Beli Sekarang
+
+</a>
+
+</div>
+
+
+<% }) %>
+
+
+</div>
+
+
+</body>
+
+</html>

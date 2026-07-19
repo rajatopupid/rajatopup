@@ -158,6 +158,22 @@ router.get("/faq", (req, res) => {
 
 });
 
+router.get("/privacy", (req, res) => {
+    res.render("privacy");
+});
+
+router.get("/terms", (req, res) => {
+    res.render("terms");
+});
+
+router.get("/contact", (req, res) => {
+    res.render("contact");
+});
+
+router.get("/about", (req, res) => {
+    res.render("about");
+});
+
 // =========================
 // CHECKOUT
 // =========================

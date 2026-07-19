@@ -1,0 +1,60 @@
+<nav class="navbar">
+
+<div class="container">
+
+<a href="/"
+class="logo">
+
+<%= process.env.APP_NAME %>
+
+</a>
+
+<div class="menu">
+
+<a href="/">Home</a>
+
+<a href="/faq">FAQ</a>
+
+<a href="/about">About</a>
+
+<% if(user){ %>
+
+<a href="/profile">
+
+Profile
+
+</a>
+
+<form action="/logout"
+method="POST"
+style="display:inline">
+
+<button>
+
+Logout
+
+</button>
+
+</form>
+
+<% } else { %>
+
+<a href="/login">
+
+Login
+
+</a>
+
+<a href="/register">
+
+Register
+
+</a>
+
+<% } %>
+
+</div>
+
+</div>
+
+</nav>
