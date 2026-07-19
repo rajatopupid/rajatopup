@@ -1655,3 +1655,58 @@ body::before{
     transform:translateY(-2px);
     box-shadow:0 0 25px gold;
 }
+
+/* ===========================
+   LEGAL PAGE
+=========================== */
+
+.container{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.container h1{
+    color:#FFD54A;
+    margin-bottom:20px;
+    font-size:30px;
+}
+
+.container h2{
+    color:#FFD54A;
+    margin-top:25px;
+    margin-bottom:10px;
+}
+
+.container p{
+    color:#ddd;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.container ul{
+    margin-left:20px;
+    color:#ddd;
+    line-height:1.8;
+}
+
+.container li{
+    margin-bottom:10px;
+}
+
+.container a{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 22px;
+    background:#FFD54A;
+    color:#111;
+    text-decoration:none;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.container a:hover{
+    background:#ffc107;
+    transform:translateY(-2px);
+}

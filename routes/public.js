@@ -132,10 +132,28 @@ router.get("/search", async (req, res) => {
 // ABOUT
 // =========================
 
+router.get("/faq", (req, res) => {
+    res.render("faq");
+});
+
 router.get("/about", (req, res) => {
+    res.render("about");
+});
 
-    res.send("RajaTopUp V1");
+router.get("/privacy", (req, res) => {
+    res.render("privacy");
+});
 
+router.get("/terms", (req, res) => {
+    res.render("terms");
+});
+
+router.get("/refund", (req, res) => {
+    res.render("refund");
+});
+
+router.get("/disclaimer", (req, res) => {
+    res.render("disclaimer");
 });
 
 // =========================
@@ -156,22 +174,6 @@ router.get("/faq", (req, res) => {
 
     res.send("FAQ RajaTopUp");
 
-});
-
-router.get("/privacy", (req, res) => {
-    res.render("privacy");
-});
-
-router.get("/terms", (req, res) => {
-    res.render("terms");
-});
-
-router.get("/contact", (req, res) => {
-    res.render("contact");
-});
-
-router.get("/about", (req, res) => {
-    res.render("about");
 });
 
 // =========================
