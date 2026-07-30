@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pesanan Berhasil</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body style="text-align:center;padding:40px;font-family:Arial">
+
+<h2>✅ Pesanan Berhasil Dibuat</h2>
+
+<p>Invoice</p>
+
+<h3><%= order.ref_id %></h3>
+
+<p>
+Silakan lanjutkan pembayaran melalui WhatsApp.
+</p>
+
+<p>Anda akan diarahkan otomatis...</p>
+
+<script>
+setTimeout(()=>{
+location.href="https://wa.me/<%= order.whatsapp %>";
+},3000);
+</script>
+
+</body>
+</html>

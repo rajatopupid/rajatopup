@@ -179,6 +179,8 @@ function isAdmin(req, res, next) {
 
 app.use("/", require("./routes/public"));
 
+app.use("/", require("./routes/fonnte"));
+
 app.use("/api", require("./routes/api"));
 
 app.use("/admin", require("./routes/admin"));

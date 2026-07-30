@@ -43,7 +43,7 @@ const aktif = response.data.filter(item =>
 const cheapest = {};
 
 for (const item of aktif) {
-    const key = item.buyer_sku_code;
+     const key = item.product_name.toLowerCase();
 
     if (
         !cheapest[key] ||

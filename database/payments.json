@@ -1,0 +1,14 @@
+{
+  "dana":{
+    "nomor":"083172927610",
+    "nama":"Rahmad Rizki"
+  },
+  "seabank":{
+    "nomor":"901719133159",
+    "nama":"Nuraini"
+  },
+  "qris":{
+    "url":"https://rajatopup-murah-production.up.railway.app/payment/qris.jpg",
+    "fee":0.007
+  }
+}

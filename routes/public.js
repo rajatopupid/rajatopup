@@ -27,7 +27,7 @@ const ORDERS = path.join(DB, "orders.json");
 const TRANSACTIONS = path.join(DB, "transactions.json");
 
 const { nanoid } = require("nanoid");
-const { createPayment } = require("../services/midtrans");
+const { sendWA } = require("../services/fonnte");
 
 async function write(file, data) {
     await fs.writeJson(file, data, { spaces: 2 });
@@ -39,7 +39,17 @@ async function write(file, data) {
 
 router.get("/", async (req, res) => {
 
-    const products = await read(PRODUCTS);
+let products = await read(PRODUCTS);
+
+products = products.filter(p =>
+[
+"Pulsa",
+"Data",
+"Games",
+"Voucher",
+"PLN"
+].includes(p.category)
+);
 
     let settings = {};
 
@@ -169,6 +179,24 @@ router.get("/category/:category/:brand", async (req, res) => {
 
     );
 
+// =========================
+// SORT PRODUK GAME
+// =========================
+
+if (req.params.category.toUpperCase() === "GAMES") {
+
+    data.sort((a,b)=>{
+
+        const da = parseInt(a.nama.match(/\d+/)?.[0] || "999999");
+        const db = parseInt(b.nama.match(/\d+/)?.[0] || "999999");
+
+        return da - db;
+
+    });
+
+}
+
+
 res.render("kategori", {
     game: req.params.brand,
     products: data
@@ -228,9 +256,14 @@ router.get("/about", (req, res) => {
 
 router.post("/checkout", async (req, res) => {
 
+console.log("WA:", req.body.whatsapp);
+
     const products = await read(PRODUCTS);
     const orders = await read(ORDERS);
     const transactions = await read(TRANSACTIONS);
+
+console.log("Kode:", req.body.kode);
+console.log("Body:", req.body);
 
     const product = products.find(
         p => p.kode === req.body.kode
@@ -239,6 +272,15 @@ router.post("/checkout", async (req, res) => {
     if (!product) {
         return res.send("Produk tidak ditemukan");
     }
+
+let hargaProduk = product.harga_jual;
+let biayaAdmin = 0;
+
+if (req.body.payment === "QRIS") {
+    biayaAdmin = Math.ceil(hargaProduk * 0.007); // 0,7%
+}
+
+const totalBayar = hargaProduk + biayaAdmin;
 
     const ref_id = "RTU" + Date.now();
 
@@ -254,7 +296,7 @@ router.post("/checkout", async (req, res) => {
 
         nama_produk: product.nama,
 
-        game: product.game,
+        game: product.game || product.brand || "Free Fire",
 
         tujuan: req.body.tujuan,
 
@@ -264,7 +306,11 @@ router.post("/checkout", async (req, res) => {
 
         whatsapp: req.body.whatsapp || "",
 
-        harga: product.harga_jual,
+        harga_produk: hargaProduk,
+
+        biaya_admin: biayaAdmin,
+
+        harga: totalBayar,
 
         status: "PENDING",
 
@@ -272,29 +318,83 @@ router.post("/checkout", async (req, res) => {
 
     };
 
+let wa = (order.whatsapp || "").replace(/\D/g, "");
+
+if (wa.startsWith("08")) {
+    wa = "62" + wa.slice(1);
+} else if (!wa.startsWith("62")) {
+    wa = "";
+}
+
+if (wa.length < 10) {
+    return res.send("Nomor WhatsApp tidak valid.");
+}
+
+order.whatsapp = wa;
+
     orders.push(order);
 
     await write(ORDERS, orders);
 
-    try {
+// =========================
+// NOTIF WHATSAPP CUSTOMER
+// =========================
 
-const payment = await createPayment(order);
+let paymentInfo = "";
 
-res.render("payment",{
+if (order.payment === "DANA") {
+  paymentInfo = `
+💙 *Pembayaran DANA*
+Nomor : 083172927610
+Atas Nama : Rahmad Rizki`;
+} else if (order.payment === "QRIS") {
+  paymentInfo = `
+📷 *Pembayaran QRIS*
+Silakan scan QRIS berikut:
+https://rajatopup-production-d6e4.up.railway.app/images/payment/qris.jpg`;
+} else if (order.payment === "SeaBank") {
+  paymentInfo = `
+🏦 *Pembayaran SeaBank*
+No. Rekening : 901719133159
+Atas Nama : NURAINI`;
+}
 
-    order,
+await sendWA(
+  order.whatsapp,
+`👋 Halo Kak,
 
-    payment
+Pesanan *RajaTopUp* berhasil dibuat ✅
 
+━━━━━━━━━━━━━━
+📄 Invoice : ${order.ref_id}
+🎮 Game : ${order.game}
+📦 Produk : ${order.nama_produk}
+🆔 User ID : ${order.tujuan}
+${order.server_id ? `🌐 Zone ID : ${order.server_id}` : ""}
+💰 Harga Produk : Rp ${Number(order.harga_produk).toLocaleString("id-ID")}
+${order.biaya_admin > 0 ? `💳 Biaya Admin : Rp ${Number(order.biaya_admin).toLocaleString("id-ID")}` : ""}
+━━━━━━━━━━━━━━
+💵 Total Bayar : Rp ${Number(order.harga).toLocaleString("id-ID")}
+━━━━━━━━━━━━━━
+
+💳 Metode Pembayaran
+${paymentInfo}
+
+⏳ Segera lakukan pembayaran agar pesanan dapat diproses.
+
+📞 Butuh bantuan?
+Hubungi Admin RajaTopUp.
+083153030363
+
+Terima kasih telah mempercayai RajaTopUp ❤️
+
+👑 RajaTopUp
+⚡ Fast • Secure • Trusted`
+);
+
+return res.render("success", {
+  order
 });
-
-   return;
-
-    } catch (err) {
-
-        res.send(err.message);
-
-    }
 
 });
 
