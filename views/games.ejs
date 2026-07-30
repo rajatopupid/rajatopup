@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game - RajaTopUp</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+<h2>🎮 Pilih Game</h2>
+</header>
+
+<div class="category-grid">
+
+<% games.forEach(game=>{ %>
+
+<a href="/game/<%= encodeURIComponent(game) %>" class="category-card">
+
+<div class="category-icon">🎮</div>
+
+<h3><%= game %></h3>
+
+<p>Pilih Nominal</p>
+
+</a>
+
+<% }) %>
+
+</div>
+
+</body>
+</html>

@@ -20,7 +20,7 @@ async function merchantInfo() {
 
     try {
 
-        const signature = md5(`${MERCHANT}${SECRET}`);
+const signature = md5(`${MERCHANT}:${SECRET}`);
 
         console.log("MERCHANT =", MERCHANT);
         console.log("SECRET LENGTH =", SECRET.length);
