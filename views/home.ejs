@@ -163,68 +163,6 @@ href="/css/style.css">
 
 </section>
 
-<section class="product-grid" id="productGrid">
-
-id="productGrid">
-
-<% products.forEach(p=>{ %>
-
-<a href="/product/<%= p.kode %>" class="game-card">
-
-<div class="game-image">
-
-<img
-src="/images/<%= (p.game || 'default').toLowerCase().replace(/\s+/g,'') %>.png"
-onerror="this.src='/images/default.png'">
-
-<span class="badge-popular">
-
-🔥 Populer
-
-</span>
-
-</div>
-
-<div class="game-info">
-
-<h3>
-
-<%= p.nama %>
-
-</h3>
-
-<p>
-
-<%= p.game %>
-
-</p>
-
-<div class="price">
-
-Mulai
-
-<strong>
-
-Rp <%= Number(p.harga_jual || 0).toLocaleString("id-ID") %>
-
-</strong>
-
-</div>
-
-<button class="buy-btn">
-
-Top Up →
-
-</button>
-
-</div>
-
-</a>
-
-<% }) %>
-
-</section>
-
 <footer>
 
 <h3>👑 RajaTopUp</h3>

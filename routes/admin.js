@@ -1,3 +1,4 @@
+const productController = require("../controllers/productController");
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const fs = require("fs-extra");
@@ -278,5 +279,11 @@ router.post("/settings", async (req, res) => {
     res.redirect("/admin/dashboard");
 
 });
+
+// ===============================
+// SYNC PRODUK DIGIFLAZZ
+// ===============================
+
+router.get("/products/sync", productController.sync);
 
 module.exports = router;
