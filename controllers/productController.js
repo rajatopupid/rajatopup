@@ -33,55 +33,48 @@ console.log(response.data?.slice(0, 10));
 
         }
 
-        const products = response.data.map(item => ({
+// Ambil hanya produk aktif
+const aktif = response.data.filter(item =>
+    item.buyer_product_status &&
+    item.seller_product_status
+);
 
-            id: item.buyer_sku_code,
+// Pilih harga termurah untuk setiap buyer_sku_code
+const cheapest = {};
 
-            kode: item.buyer_sku_code,
+for (const item of aktif) {
+    const key = item.buyer_sku_code;
 
-            nama: item.product_name,
+    if (
+        !cheapest[key] ||
+        Number(item.price) < Number(cheapest[key].price)
+    ) {
+        cheapest[key] = item;
+    }
+}
 
-            brand: item.brand,
-
-            category: item.category,
-
-            type: item.type,
-
-            seller: item.seller_name,
-
-            harga_modal: Number(item.price),
-
-            harga_jual: Number(item.price) + markup,
-
-            status: item.buyer_product_status,
-
-            seller_status: item.seller_product_status,
-
-            unlimited_stock: item.unlimited_stock,
-
-            stock: item.stock,
-
-            multi: item.multi,
-
-            desc: item.desc || "",
-
-            updated_at: new Date().toISOString()
-
-        }));
+const products = Object.values(cheapest).map(item => ({
+    id: item.buyer_sku_code,
+    kode: item.buyer_sku_code,
+    nama: item.product_name,
+    brand: item.brand,
+    category: item.category,
+    type: item.type,
+    seller: item.seller_name,
+    harga_modal: Number(item.price),
+    harga_jual: Number(item.price) + markup,
+    status: item.buyer_product_status,
+    seller_status: item.seller_product_status,
+    unlimited_stock: item.unlimited_stock,
+    stock: item.stock,
+    multi: item.multi,
+    desc: item.desc || "",
+    updated_at: new Date().toISOString()
+}));
 
         await write("products", products);
 
-        return res.json({
-
-            success: true,
-
-            total: products.length,
-
-            message: "Sinkron produk berhasil.",
-
-            data: products
-
-        });
+return res.redirect("/admin?sync=success");
 
     } catch (err) {
 
