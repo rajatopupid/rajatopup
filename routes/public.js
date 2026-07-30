@@ -169,11 +169,9 @@ router.get("/category/:category/:brand", async (req, res) => {
 
     );
 
-    res.render("products", {
-        title: req.params.brand,
-        products: data
-    });
-
+res.render("kategori", {
+    game: req.params.brand,
+    products: data
 });
 
 // =========================
