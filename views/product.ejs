@@ -298,12 +298,12 @@ name="kode"
 value="<%= product.kode %>">
 
 <div class="section-title">
-
-🆔 Data Akun
-
+🆔 Data Tujuan
 </div>
 
-<label>User ID Free Fire</label>
+<% if(product.category==="Games"){ %>
+
+<label>User ID</label>
 
 <input
 type="text"
@@ -311,10 +311,55 @@ name="tujuan"
 placeholder="Masukkan User ID"
 required>
 
+<% if((product.brand || "").toUpperCase().includes("MOBILE LEGENDS")){ %>
+
+<label>Zone ID</label>
+
+<input
+type="text"
+name="server_id"
+placeholder="Masukkan Zone ID"
+required>
+
+<% } else { %>
+
 <input
 type="hidden"
 name="server_id"
 value="">
+
+<% } %>
+
+<% } else if(product.category==="Pulsa" || product.category==="Data"){ %>
+
+<label>Nomor HP</label>
+
+<input
+type="text"
+name="tujuan"
+placeholder="08xxxxxxxxxx"
+required>
+
+<input
+type="hidden"
+name="server_id"
+value="">
+
+<% } else { %>
+
+<label>Nomor Tujuan</label>
+
+<input
+type="text"
+name="tujuan"
+required>
+
+<input
+type="hidden"
+name="server_id"
+value="">
+
+<% } %>
 
 <div class="section-title">
 
@@ -333,7 +378,7 @@ placeholder="contoh@gmail.com">
 
 <input
 type="text"
-name="whatsapp"
+name="whatsapp *wajib Aktif*"
 placeholder="08xxxxxxxxxx"
 required>
 
@@ -358,60 +403,30 @@ required>
 
 <div class="payment-list">
 
-    <label class="payment-item">
-        <input type="radio" name="payment" value="qris" checked>
-        <img src="/images/payment/qris.png" alt="QRIS">
-        <span>QRIS</span>
-    </label>
+<label class="payment-item">
+<input type="radio" name="payment" value="DANA" checked>
+<img src="/images/payment/dana.png">
+<span>DANA</span>
+</label>
 
-    <label class="payment-item">
-        <input type="radio" name="payment" value="gopay">
-        <img src="/images/payment/gopay.png" alt="GoPay">
-        <span>GoPay</span>
-    </label>
+<label class="payment-item">
+<input type="radio" name="payment" value="QRIS">
+<img src="/images/payment/qris.png">
+<span>QRIS</span>
+</label>
 
-    <label class="payment-item">
-        <input type="radio" name="payment" value="dana">
-        <img src="/images/payment/dana.png" alt="DANA">
-        <span>DANA</span>
-    </label>
-
-    <label class="payment-item">
-        <input type="radio" name="payment" value="mandiri">
-        <img src="/images/payment/mandiri.png" alt="Mandiri">
-        <span>Mandiri Virtual Account</span>
-    </label>
-
-    <label class="payment-item">
-        <input type="radio" name="payment" value="bni">
-        <img src="/images/payment/bni.png" alt="BNI">
-        <span>BNI Virtual Account</span>
-    </label>
-
-    <label class="payment-item">
-        <input type="radio" name="payment" value="bsi">
-        <img src="/images/payment/bsi.png" alt="BSI">
-        <span>Bank Syariah Indonesia</span>
-    </label>
-
-    <label class="payment-item">
-        <input type="radio" name="payment" value="seabank">
-        <img src="/images/payment/seabank.png" alt="SeaBank">
-        <span>SeaBank</span>
-    </label>
-
-    <label class="payment-item">
-        <input type="radio" name="payment" value="alfamart">
-        <img src="/images/payment/alfamart.png" alt="Alfamart">
-        <span>Alfamart</span>
-    </label>
+<label class="payment-item">
+<input type="radio" name="payment" value="SeaBank">
+<img src="/images/payment/seabank.png">
+<span>SeaBank</span>
+</label>
 
 </div>
 
 </div>
 
 <button class="btn" type="submit">
-
+onclick="kirimWA()">
 ⚡ Bayar Sekarang
 
 </button>
@@ -507,6 +522,41 @@ required>
 </div>
 
 </div>
+
+<script>
+function kirimWA(){
+
+const metode=document.querySelector('input[name="payment"]:checked').value;
+
+const produk="<%= product.nama %>";
+
+const harga="<%= Number(product.harga_jual).toLocaleString('id-ID') %>";
+
+const tujuan=document.querySelector('[name=tujuan]').value;
+
+const server=document.querySelector('[name=server_id]');
+
+const zone=server?server.value:"";
+
+const wa=document.querySelector('[name=whatsapp]').value;
+
+let pesan="👑 *ORDER RAJATOPUP*%0A%0A";
+
+pesan+="📦 Produk : "+produk+"%0A";
+pesan+="💰 Harga : Rp "+harga+"%0A";
+pesan+="🎮 Tujuan : "+tujuan+"%0A";
+
+if(zone!=""){
+pesan+="🆔 Zone : "+zone+"%0A";
+}
+
+pesan+="💳 Pembayaran : "+metode+"%0A";
+pesan+="📱 WA : "+wa;
+
+window.open("https://wa.me/6283172927610?text="+pesan,"_blank");
+
+}
+</script>
 
 </body>
 

@@ -3,10 +3,7 @@ const fs = require("fs-extra");
 const path = require("path");
 const { nanoid } = require("nanoid");
 
-const {
-    createTransaction,
-    checkStatus
-} = require("../services/apigames");
+const digiflazz = require("../services/digiflazz");
 
 const router = express.Router();
 
@@ -208,17 +205,17 @@ router.post("/order", async (req, res) => {
 
         await write(ORDERS, orders);
 
-        const apiResult = await createTransaction({
+const apiResult = await digiflazz.createTransaction({
 
-            ref_id,
+    refId: ref_id,
 
-            produk: product.kode,
+    buyerSkuCode: product.kode,
 
-            tujuan,
+    customerNo: server_id
+        ? `${tujuan}${server_id}`
+        : tujuan
 
-            server_id
-
-        });
+});
 
         transaksi.push({
 
@@ -228,13 +225,13 @@ router.post("/order", async (req, res) => {
 
             order_id: order.id,
 
-            provider: "APIGames",
+            provider: "Digiflazz",
 
             provider_response: apiResult,
 
-            status: apiResult.success
-                ? "diproses"
-                : "gagal",
+status:
+apiResult.data?.status ||
+"pending",
 
             createdAt: new Date().toISOString()
 
@@ -287,11 +284,10 @@ router.get("/status/:ref_id", async (req, res) => {
 
     try {
 
-        const result = await checkStatus(
-
-            req.params.ref_id
-
-        );
+const result =
+await digiflazz.checkStatus(
+    req.params.ref_id
+);
 
         res.json(result);
 

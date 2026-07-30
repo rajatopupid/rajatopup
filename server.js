@@ -1,10 +1,6 @@
 require("dotenv").config();
 
-const { checkStatus } = require("./services/apigames");
-const {
-    createTransaction,
-    merchantInfo
-} = require("./services/apigames");
+const digiflazz = require("./services/digiflazz");
 const express = require("express");
 const session = require("express-session");
 const helmet = require("helmet");
@@ -683,7 +679,7 @@ async function createDefaultAdmin() {
 
 app.get("/status/:ref", async (req, res) => {
 
-    const result = await checkStatus(req.params.ref);
+    const result = await digiflazz.checkStatus(req.params.ref); 
 
     res.send(`
     <pre>${JSON.stringify(result, null, 2)}</pre>
@@ -730,14 +726,6 @@ async function start() {
     await ensureDatabase();
 
     await createDefaultAdmin();
-
-console.log("=== TEST MERCHANT ===");
-
-const info = await merchantInfo();
-
-console.log(info);
-
-console.log("=====================");
 
     app.listen(PORT, () => {
 

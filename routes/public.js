@@ -27,7 +27,6 @@ const ORDERS = path.join(DB, "orders.json");
 const TRANSACTIONS = path.join(DB, "transactions.json");
 
 const { nanoid } = require("nanoid");
-const { createTransaction } = require("../services/apigames");
 const { createPayment } = require("../services/midtrans");
 
 async function write(file, data) {
@@ -124,6 +123,55 @@ router.get("/search", async (req, res) => {
 
         data: result
 
+    });
+
+});
+
+// =========================
+// CATEGORY
+// =========================
+
+router.get("/category/:category", async (req, res) => {
+
+    const products = await read(PRODUCTS);
+
+    const category = req.params.category.toUpperCase();
+
+    const brands = [...new Set(
+        products
+            .filter(p => (p.category || "").toUpperCase() === category)
+            .map(p => p.brand)
+    )];
+
+    res.render("category", {
+        category,
+        brands
+    });
+
+});
+
+
+// =========================
+// CATEGORY BRAND
+// =========================
+
+router.get("/category/:category/:brand", async (req, res) => {
+
+    const products = await read(PRODUCTS);
+
+    const data = products.filter(p =>
+
+        (p.category || "").toUpperCase() === req.params.category.toUpperCase()
+
+        &&
+
+        (p.brand || "").toUpperCase() === req.params.brand.toUpperCase()
+
+    );
+
+    res.render("products", {
+        title: req.params.brand,
+        products: data
     });
 
 });
@@ -251,3 +299,4 @@ res.render("payment",{
 });
 
 module.exports = router;
+

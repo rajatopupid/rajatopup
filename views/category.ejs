@@ -1,0 +1,17 @@
+<h2><%= category %></h2>
+
+<div class="grid">
+
+<% brands.forEach(brand=>{ %>
+
+<a class="card"
+
+href="/category/<%= category %>/<%= brand %>">
+
+<h3><%= brand %></h3>
+
+</a>
+
+<% }) %>
+
+</div>
