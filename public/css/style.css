@@ -1685,3 +1685,123 @@ display:block;
 margin-top:8px;
 font-size:14px;
 }
+
+.game-header{
+display:flex;
+align-items:center;
+gap:15px;
+padding:20px;
+background:#181818;
+border-bottom:2px solid #FFC107;
+}
+
+.game-logo{
+width:70px;
+height:70px;
+object-fit:contain;
+}
+
+.game-header h1{
+margin:0;
+color:#fff;
+}
+
+.game-header p{
+margin-top:5px;
+color:#bbb;
+}
+
+.topbar{
+    background:#111;
+    color:#F7C948;
+    text-align:center;
+    padding:20px;
+    border-bottom:2px solid #F7C948;
+}
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    padding:25px;
+}
+
+.category-card{
+    background:#1b1b1b;
+    border:1px solid rgba(247,201,72,.2);
+    border-radius:16px;
+    text-decoration:none;
+    color:white;
+    text-align:center;
+    padding:20px;
+    transition:.25s;
+}
+
+.category-card:hover{
+    transform:translateY(-5px);
+    border-color:#F7C948;
+}
+
+.category-image{
+    width:90px;
+    height:90px;
+    object-fit:contain;
+    margin-bottom:15px;
+}
+
+.category-card h3{
+    color:#F7C948;
+    margin:10px 0;
+}
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.product-card{
+background:#1a1a1a;
+border:1px solid rgba(255,193,7,.25);
+border-radius:16px;
+padding:16px;
+transition:.3s;
+}
+
+.product-card:hover{
+border-color:#FFC107;
+transform:translateY(-3px);
+box-shadow:0 0 18px rgba(255,193,7,.25);
+}
+
+.product-card h2{
+color:#fff;
+font-size:18px;
+margin-bottom:5px;
+}
+
+.kode{
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.product-card h3{
+color:#FFC107;
+font-size:22px;
+margin:15px 0;
+}
+
+.btn{
+display:block;
+width:100%;
+padding:12px;
+text-align:center;
+text-decoration:none;
+border-radius:10px;
+background:linear-gradient(90deg,#FFD54F,#FFC107);
+color:#111;
+font-weight:bold;
+}

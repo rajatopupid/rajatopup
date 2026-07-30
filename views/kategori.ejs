@@ -1,53 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><%= game %> - RajaTopUp</title>
+
 <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
 
+<div class="game-header">
 
-<h1>
-🔥 <%= game %>
-</h1>
+<% if(game.toLowerCase().includes("free fire")){ %>
+<img src="/images/games/freefireLogo.png" class="game-logo">
+<% } else if(game.toLowerCase().includes("mobile legends")){ %>
+<img src="/images/games/mlbblogo.png" class="game-logo">
+<% } %>
 
+<div>
+<h1>🔥 <%= game %></h1>
+<p>Pilih nominal yang tersedia</p>
+</div>
+
+</div>
 
 <div class="product-grid">
 
 <% products.forEach(p=>{ %>
 
-
 <div class="product-card">
 
-<h2>
-<%= p.nama %>
-</h2>
+<h2><%= p.nama %></h2>
 
-<p>
-<%= p.kode %>
-</p>
-
+<p class="kode"><%= p.kode %></p>
 
 <h3>
-Rp <%= Number(p.harga_jual)
-.toLocaleString("id-ID") %>
+Rp <%= Number(p.harga_jual).toLocaleString("id-ID") %>
 </h3>
 
-<a href="/product/<%=p.id%>" class="btn">
-    Beli Sekarang
+<a href="/product/<%= p.id %>" class="btn">
+⚡ Beli Sekarang
 </a>
 
 </div>
 
-
 <% }) %>
-
 
 </div>
 
-
 </body>
-
 </html>

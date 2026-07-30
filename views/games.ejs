@@ -4,13 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game - RajaTopUp</title>
+
 <link rel="stylesheet" href="/css/style.css">
+
+<style>
+body{
+    margin:0;
+    background:#0f1115;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
+}
+
+.topbar{
+    background:#111;
+    border-bottom:2px solid #F7C948;
+    padding:20px;
+    text-align:center;
+}
+
+.topbar h2{
+    margin:0;
+    color:#F7C948;
+    font-size:28px;
+}
+
+.category-grid{
+    max-width:1100px;
+    margin:35px auto;
+    padding:20px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.category-card{
+    background:#1b1b1b;
+    border:1px solid rgba(247,201,72,.18);
+    border-radius:18px;
+    text-decoration:none;
+    color:#fff;
+    text-align:center;
+    padding:25px;
+    transition:.25s;
+}
+
+.category-card:hover{
+    transform:translateY(-6px);
+    border-color:#F7C948;
+    box-shadow:0 10px 25px rgba(247,201,72,.2);
+}
+
+.category-card img{
+    width:90px;
+    height:90px;
+    object-fit:contain;
+    margin-bottom:18px;
+}
+
+.category-card h3{
+    margin:0;
+    color:#F7C948;
+    font-size:22px;
+}
+
+.category-card p{
+    color:#bbb;
+    margin-top:10px;
+}
+</style>
+
 </head>
 
 <body>
 
 <header class="topbar">
-<h2>🎮 Pilih Game</h2>
+<h2>👑 Pilih Game</h2>
 </header>
 
 <div class="category-grid">
@@ -19,11 +87,19 @@
 
 <a href="/game/<%= encodeURIComponent(game) %>" class="category-card">
 
-<div class="category-icon">🎮</div>
+<%
+let logo="/images/games/freefireLogo.png";
+
+if(game.toUpperCase().includes("MOBILE")){
+    logo="/images/games/mlbblogo.png";
+}
+%>
+
+<img src="<%= logo %>" alt="<%= game %>">
 
 <h3><%= game %></h3>
 
-<p>Pilih Nominal</p>
+<p>Top Up Cepat • Murah • Otomatis</p>
 
 </a>
 

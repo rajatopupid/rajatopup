@@ -1,12 +1,35 @@
-<h2><%= category %></h2>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= category %> - RajaTopUp</title>
 
-<div class="grid">
+<link rel="stylesheet" href="/css/style.css">
 
-<% brands.forEach(brand=>{ %>
+</head>
+<body>
 
-<a class="card"
+<header class="topbar">
+    <h2>🎮 <%= category %></h2>
+</header>
 
-href="/category/<%= category %>/<%= brand %>">
+<div class="category-grid">
+
+<% brands.forEach(brand => { %>
+
+<%
+let logo="/images/games/freefireLogo.png";
+
+if(brand.toUpperCase().includes("MOBILE")){
+    logo="/images/games/mlbblogo.png";
+}
+%>
+
+<a class="category-card"
+href="/category/<%= category %>/<%= encodeURIComponent(brand) %>">
+
+<img src="<%= logo %>" class="category-image">
 
 <h3><%= brand %></h3>
 
@@ -15,3 +38,6 @@ href="/category/<%= category %>/<%= brand %>">
 <% }) %>
 
 </div>
+
+</body>
+</html>
