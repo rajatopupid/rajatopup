@@ -336,6 +336,32 @@ order.whatsapp = wa;
 
     await write(ORDERS, orders);
 
+await sendWA(
+    process.env.ADMIN_NOTIFY_WA,
+`🛒 ORDER BARU MASUK
+
+━━━━━━━━━━━━━━
+📄 Invoice : ${order.ref_id}
+🎮 Game : ${order.game}
+📦 Produk : ${order.nama_produk}
+🆔 User ID : ${order.tujuan}
+📱 WhatsApp : ${order.whatsapp}
+
+💳 Metode : ${order.payment}
+💰 Total : Rp ${Number(order.harga).toLocaleString("id-ID")}
+━━━━━━━━━━━━━━
+
+⏳ Status : MENUNGGU PEMBAYARAN
+
+Customer akan mengirim bukti pembayaran melalui WhatsApp setelah transfer.
+
+━━━━━━━━━━━━━━
+🛠 Perintah Admin
+
+✅ ACC ${order.ref_id}
+❌ TOLAK ${order.ref_id}`
+);
+
 // =========================
 // NOTIF WHATSAPP CUSTOMER
 // =========================
@@ -382,8 +408,11 @@ ${paymentInfo}
 
 ⏳ Segera lakukan pembayaran agar pesanan dapat diproses.
 
-📞 Butuh bantuan?
-Hubungi Admin RajaTopUp.
+📌 Setelah berhasil melakukan pembayaran,
+
+📷 Kirim bukti transfer (screenshot) ke WhatsApp Admin agar pesanan segera diproses.
+
+📞 Admin:
 https://wa.me/6283153030363
 
 Terima kasih telah mempercayai RajaTopUp ❤️

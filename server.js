@@ -695,49 +695,84 @@ console.log("url       :", req.body.url);
 console.log("filename  :", req.body.filename);
 console.log("extension :", req.body.extension);
 
-    // Jika customer mengirim gambar bukti transfer
+const admin = (process.env.ADMIN_NOTIFY_WA || "").replace(/\D/g, "");
 
-if (type === "image") {
-
-    console.log("📷 Bukti transfer diterima");
+if (sender === admin) {
 
     const orders = await read(ORDERS);
 
-    const order = orders
-        .filter(o => o.whatsapp === sender && o.status === "PENDING")
-        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+    // =========================
+    // ACC INVOICE
+    // =========================
 
-    if (!order) {
+    if (text.toUpperCase().startsWith("ACC ")) {
+
+        const ref = text.substring(4).trim();
+
+        const order = orders.find(o => o.ref_id === ref);
+
+        if (!order) {
+
+            await sendWA(sender, "❌ Invoice tidak ditemukan.");
+
+            return res.send("OK");
+        }
+
+        order.status = "PROCESS";
+
+        await write(ORDERS, orders);
+
+        await sendWA(order.whatsapp,
+`✅ Pembayaran berhasil diverifikasi.
+
+📄 Invoice : ${order.ref_id}
+
+Pesanan Anda sedang diproses.
+
+Mohon tunggu beberapa saat.`);
 
         await sendWA(sender,
-`❌ Tidak ada pesanan yang masih menunggu pembayaran.`);
+`✅ Invoice ${order.ref_id} berhasil diverifikasi.
+
+Sedang mengirim transaksi ke Digiflazz...`);
 
         return res.send("OK");
     }
 
-    order.status = "MENUNGGU_VERIFIKASI";
-    order.bukti = req.body.url || "";
-    order.waktu_upload = new Date().toISOString();
+    // =========================
+    // TOLAK INVOICE
+    // =========================
 
-    await write(ORDERS, orders);
+    if (text.toUpperCase().startsWith("TOLAK ")) {
 
-    await sendWA(process.env.ADMIN_NOTIFY_WA,
-`📥 Bukti pembayaran diterima
+        const ref = text.substring(6).trim();
 
-Invoice : ${order.ref_id}
-Produk : ${order.nama_produk}
-User ID : ${order.tujuan}
-Total : Rp ${Number(order.harga).toLocaleString("id-ID")}
+        const order = orders.find(o => o.ref_id === ref);
 
-Silakan cek pembayaran.
+        if (!order) {
 
-Balas:
-ACC ${order.ref_id}`);
+            await sendWA(sender, "❌ Invoice tidak ditemukan.");
 
-    await sendWA(sender,
-`✅ Bukti pembayaran berhasil diterima.
+            return res.send("OK");
+        }
 
-Mohon tunggu, admin sedang memverifikasi pembayaran Anda.`);
+        order.status = "DITOLAK";
+
+        await write(ORDERS, orders);
+
+        await sendWA(order.whatsapp,
+`❌ Pembayaran tidak dapat diverifikasi.
+
+📄 Invoice : ${order.ref_id}
+
+Silakan hubungi admin apabila terjadi kesalahan.`);
+
+        await sendWA(sender,
+`✅ Invoice ${order.ref_id} berhasil ditolak.`);
+
+        return res.send("OK");
+    }
+
 }
 
     res.send("OK");
