@@ -8,6 +8,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const path = require("path");
 const fs = require("fs-extra");
+const { sendWA } = require("./services/fonnte");
 
 const app = express();
 
