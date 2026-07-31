@@ -735,11 +735,6 @@ ACC ${order.ref_id}`);
 Mohon tunggu, admin sedang memverifikasi pembayaran Anda.`);
 }
 
-        // Nanti kita cari order berdasarkan nomor WA
-        // lalu ubah status menjadi MENUNGGU_VERIFIKASI
-
-    }
-
     res.send("OK");
 });
 
