@@ -705,39 +705,59 @@ if (sender === admin) {
     // ACC INVOICE
     // =========================
 
-    if (text.toUpperCase().startsWith("ACC ")) {
+if (text.toUpperCase().startsWith("ACC ")) {
 
-        const ref = text.substring(4).trim();
+    const ref = text.substring(4).trim();
 
-        const order = orders.find(o => o.ref_id === ref);
+    console.log("REF :", ref);
 
-        if (!order) {
+    const order = orders.find(o => o.ref_id === ref);
 
-            await sendWA(sender, "❌ Invoice tidak ditemukan.");
+    console.log("ORDER :", order);
 
-            return res.send("OK");
-        }
+    if (!order) {
 
-        order.status = "PROCESS";
+        await sendWA(sender, "❌ Invoice tidak ditemukan.");
 
-        await write(ORDERS, orders);
+        return res.send("OK");
+    }
 
-        await sendWA(order.whatsapp,
+    order.status = "PROCESS";
+
+    await write(ORDERS, orders);
+
+    let wa = (order.whatsapp || "").replace(/\D/g, "");
+
+    if (wa.startsWith("08")) {
+        wa = "62" + wa.substring(1);
+    }
+
+    console.log("WA CUSTOMER :", wa);
+
+    await sendWA(
+        wa,
 `✅ Pembayaran berhasil diverifikasi.
 
 📄 Invoice : ${order.ref_id}
 
 Pesanan Anda sedang diproses.
 
-Mohon tunggu beberapa saat.`);
+Mohon tunggu beberapa saat.`
+    );
 
-        await sendWA(sender,
+    console.log("Pesan customer terkirim");
+
+    await sendWA(
+        sender,
 `✅ Invoice ${order.ref_id} berhasil diverifikasi.
 
-Sedang mengirim transaksi ke Digiflazz...`);
+Sedang mengirim transaksi ke Digiflazz...`
+    );
 
-        return res.send("OK");
-    }
+    console.log("Pesan admin terkirim");
+
+    return res.send("OK");
+}
 
     // =========================
     // TOLAK INVOICE
