@@ -337,7 +337,7 @@ order.whatsapp = wa;
     await write(ORDERS, orders);
 
 await sendWA(
-    process.env.ADMIN_NOTIFY_WA,
+    process.env.ADMIN_ACC_WA,
 `🛒 ORDER BARU MASUK
 
 ━━━━━━━━━━━━━━
