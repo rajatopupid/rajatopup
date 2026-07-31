@@ -679,14 +679,22 @@ app.use(express.json());
 
 app.post("/webhook/fonnte", async (req, res) => {
 
+app.get("/webhook/fonnte", (req, res) => {
+    res.send("Webhook RajaTopUp Aktif");
+});
+
     console.log("=== PESAN MASUK ===");
     console.log(req.body);
 
-    const sender = (req.body.sender || "").replace(/\D/g, "");
-    const message = (req.body.message || "").trim().toUpperCase();
+const sender = (req.body.sender || "").replace(/\D/g, "");
+const message = (
+    req.body.pesan ||
+    req.body.message ||
+    ""
+).trim().toUpperCase();
 
-    console.log("Pengirim :", sender);
-    console.log("Pesan    :", message);
+console.log("Pengirim :", sender);
+console.log("Pesan    :", message);
 
     res.send("OK");
 });
