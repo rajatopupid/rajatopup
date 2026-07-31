@@ -1,30 +1,236 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Bantuan</title>
-<link rel="stylesheet" href="/css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ RajaTopUp</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:#fff;
+padding:20px;
+}
+
+.container{
+max-width:850px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:25px;
+color:#FFD700;
+}
+
+.accordion{
+background:#1e293b;
+margin-bottom:12px;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 4px 12px rgba(0,0,0,.3);
+}
+
+.question{
+padding:16px;
+cursor:pointer;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+align-items:center;
+transition:.3s;
+}
+
+.question:hover{
+background:#334155;
+}
+
+.question span{
+font-size:20px;
+color:#FFD700;
+}
+
+.answer{
+max-height:0;
+overflow:hidden;
+transition:max-height .35s ease,padding .35s ease;
+padding:0 16px;
+color:#ddd;
+line-height:1.6;
+background:#111827;
+}
+
+.answer.show{
+padding:16px;
+max-height:250px;
+}
+
+.back{
+display:block;
+margin:30px auto;
+width:220px;
+text-align:center;
+background:#FFD700;
+color:#000;
+padding:12px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+}
+
+.back:hover{
+background:#ffca28;
+}
+
+</style>
+
 </head>
 <body>
 
-<div class="auth-card">
+<div class="container">
 
-<h1>❓ Bantuan / FAQ</h1>
+<h1>❓ FAQ RajaTopUp</h1>
 
-<p><b>Bagaimana cara top up?</b></p>
-<p>Pilih produk → Masukkan ID → Pilih pembayaran → Bayar.</p>
+<div class="accordion">
+<div class="question">
+Bagaimana cara melakukan top up?
+<span>+</span>
+</div>
+<div class="answer">
+Pilih game, masukkan User ID, pilih nominal, pilih metode pembayaran, lalu lakukan pembayaran.
+</div>
+</div>
 
-<hr>
+<div class="accordion">
+<div class="question">
+Berapa lama proses top up?
+<span>+</span>
+</div>
+<div class="answer">
+Pesanan biasanya diproses dalam waktu 5 detik hingga 5 menit setelah pembayaran berhasil diverifikasi.
+</div>
+</div>
 
-<p><b>Pembayaran belum masuk?</b></p>
-<p>Tunggu beberapa menit atau hubungi admin.</p>
+<div class="accordion">
+<div class="question">
+Apakah harus membuat akun?
+<span>+</span>
+</div>
+<div class="answer">
+Tidak. RajaTopUp dapat digunakan tanpa registrasi akun.
+</div>
+</div>
 
-<hr>
+<div class="accordion">
+<div class="question">
+Metode pembayaran apa saja yang tersedia?
+<span>+</span>
+</div>
+<div class="answer">
+Kami mendukung QRIS, DANA, SeaBank, serta metode pembayaran lain yang tersedia di website.
+</div>
+</div>
 
-<p><b>Diamond belum masuk?</b></p>
-<p>Silakan hubungi admin dengan menyertakan ID transaksi.</p>
+<div class="accordion">
+<div class="question">
+Kenapa pesanan saya masih Pending?
+<span>+</span>
+</div>
+<div class="answer">
+Pesanan masih menunggu pembayaran atau sedang diverifikasi oleh admin.
+</div>
+</div>
+
+<div class="accordion">
+<div class="question">
+Kenapa pesanan saya gagal?
+<span>+</span>
+</div>
+<div class="answer">
+Hal ini bisa terjadi karena ID game salah, produk sedang gangguan, stok supplier habis, atau terjadi kendala sistem.
+</div>
+</div>
+
+<div class="accordion">
+<div class="question">
+Apakah harga sudah termasuk biaya admin?
+<span>+</span>
+</div>
+<div class="answer">
+Ya. Total yang tampil saat checkout adalah jumlah yang harus dibayar.
+</div>
+</div>
+
+<div class="accordion">
+<div class="question">
+Diamond belum masuk?
+<span>+</span>
+</div>
+<div class="answer">
+Silakan hubungi Admin RajaTopUp dengan menyertakan nomor invoice dan User ID game.
+</div>
+</div>
+
+<div class="accordion">
+<div class="question">
+Apakah RajaTopUp aman?
+<span>+</span>
+</div>
+<div class="answer">
+Ya. RajaTopUp menggunakan supplier terpercaya sehingga transaksi diproses dengan aman dan cepat.
+</div>
+</div>
+
+<div class="accordion">
+<div class="question">
+Bagaimana cara menghubungi admin?
+<span>+</span>
+</div>
+<div class="answer">
+Hubungi WhatsApp Admin yang tersedia pada halaman website.
+</div>
+</div>
+
+<a href="/" class="back">⬅ Kembali ke Beranda</a>
 
 </div>
+
+<script>
+
+const items=document.querySelectorAll(".accordion");
+
+items.forEach(item=>{
+
+const q=item.querySelector(".question");
+const a=item.querySelector(".answer");
+const icon=q.querySelector("span");
+
+q.onclick=()=>{
+
+document.querySelectorAll(".answer").forEach(x=>{
+if(x!==a)x.classList.remove("show");
+});
+
+document.querySelectorAll(".question span").forEach(x=>{
+if(x!==icon)x.innerHTML="+";
+});
+
+a.classList.toggle("show");
+icon.innerHTML=a.classList.contains("show")?"−":"+";
+
+};
+
+});
+
+</script>
 
 </body>
 </html>

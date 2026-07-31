@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kelola Banner</title>
+
+<style>
+
+body{
+background:#111;
+color:white;
+font-family:Arial;
+padding:20px;
+}
+
+.card{
+background:#1f1f1f;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+}
+
+img{
+width:100%;
+max-width:500px;
+border-radius:10px;
+display:block;
+margin-bottom:15px;
+}
+
+button{
+background:#FFD54A;
+border:0;
+padding:12px 20px;
+border-radius:8px;
+font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>🖼 Kelola Banner</h1>
+
+
+<% for(let i=1;i<=5;i++){ %>
+
+<div class="card">
+
+<h2>Banner <%=i%></h2>
+
+<img src="/images/banner/banner<%=i%>.jpg"
+onerror="this.style.display='none'">
+
+<form 
+action="/admin/banner/upload/<%=i%>"
+method="POST"
+enctype="multipart/form-data">
+
+<input type="file" name="banner" accept="image/*" required>
+
+<br><br>
+
+<button>
+💾 Upload Banner <%=i%>
+</button>
+
+</form>
+
+</div>
+
+<% } %>
+
+
+</body>
+</html>

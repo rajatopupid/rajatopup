@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const fs = require("fs-extra");
 const path = require("path");
 const { nanoid } = require("nanoid");
+const multer = require("multer");
 
 const router = express.Router();
 
@@ -277,6 +278,67 @@ router.post("/settings", async (req, res) => {
     });
 
     res.redirect("/admin/dashboard");
+
+});
+
+// ==========================
+// BAGIAN BANNER HALAMAN
+// ==========================
+
+const storage = multer.diskStorage({
+
+destination:(req,file,cb)=>{
+cb(null,"public/images/banner");
+},
+
+filename:(req,file,cb)=>{
+
+const id=req.params.id;
+
+cb(null,`banner${id}.jpg`);
+
+}
+
+});
+
+
+const upload = multer({
+storage,
+
+fileFilter:(req,file,cb)=>{
+
+    if(
+        file.mimetype === "image/jpeg" ||
+        file.mimetype === "image/png" ||
+        file.mimetype === "image/webp"
+    ){
+
+        cb(null,true);
+
+    }else{
+
+        cb(new Error("File harus berupa gambar"));
+
+    }
+
+}
+
+});
+
+
+router.get("/banner",(req,res)=>{
+
+res.render("admin/banner");
+
+});
+
+
+router.post(
+"/banner/upload/:id",
+upload.single("banner"),
+(req,res)=>{
+
+res.redirect("/admin/banner");
 
 });
 

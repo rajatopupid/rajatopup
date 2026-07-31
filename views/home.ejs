@@ -125,8 +125,24 @@ href="/css/style.css">
 <div class="menu-overlay" id="menuOverlay"></div>
 
 <section class="banner-slider">
-    <img id="bannerImage" src="/images/freefire1.png" alt="Banner">
+    <img id="bannerImage" src="/images/banner/banner1.jpg" alt="Banner">
 </section>
+
+<script>
+const banners = [
+    "/images/banner/banner1.jpg",
+    "/images/banner/banner2.jpg",
+    "/images/banner/banner3.jpg",
+    "/images/banner/banner4.jpg"
+];
+
+let index = 0;
+
+setInterval(() => {
+    index = (index + 1) % banners.length;
+    document.getElementById("bannerImage").src = banners[index];
+}, 5000);
+</script>
 
 <!-- KATEGORI -->
 <section class="category-grid">
@@ -382,10 +398,10 @@ document.getElementById("welcomeOverlay").remove();
 
 <script>
 const banners = [
-    "/images/freefire1.png",
-    "/images/freefire2.png",
-    "/images/freefire3.png",
-    "/images/freefire4.png"
+    "/images/banner/banner1.jpg",
+    "/images/banner/banner2.jpg",
+    "/images/banner/banner3.jpg",
+    "/images/banner/banner4.jpg"
 ];
 
 let index = 0;

@@ -210,7 +210,7 @@ res.render("kategori", {
 
 router.get("/about", (req, res) => {
 
-    res.send("RajaTopUp V1");
+    res.render("about");
 
 });
 
@@ -230,7 +230,7 @@ router.get("/contact", (req, res) => {
 
 router.get("/faq", (req, res) => {
 
-    res.send("FAQ RajaTopUp");
+    res.render("faq");
 
 });
 
