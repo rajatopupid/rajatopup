@@ -734,7 +734,6 @@ console.log("REF DICARI :", JSON.stringify(ref));
         return res.send("OK");
     }
 
-// =========================
 // CEK STATUS ORDER
 // =========================
 
@@ -787,6 +786,30 @@ Status saat ini: ${order.status}`);
     order.status = "PROCESS";
 
     await write(ORDERS, orders);
+
+try {
+
+    const result = await digiflazz.createTransaction({
+
+        refId: order.ref_id,
+
+        buyerSkuCode: order.produk,
+
+        customerNo: order.server_id
+            ? `${order.tujuan}${order.server_id}`
+            : order.tujuan
+
+    });
+
+    console.log("===== DIGIFLAZZ =====");
+    console.log(JSON.stringify(result, null, 2));
+
+} catch (err) {
+
+    console.log("===== DIGIFLAZZ ERROR =====");
+    console.log(err.response?.data || err.message);
+
+}
 
     let wa = (order.whatsapp || "").replace(/\D/g, "");
 
