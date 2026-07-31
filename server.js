@@ -690,6 +690,11 @@ app.post("/webhook/fonnte", async (req, res) => {
     console.log("Tipe :", type);
     console.log("Pesan :", text);
 
+console.log("text      :", req.body.text);
+console.log("url       :", req.body.url);
+console.log("filename  :", req.body.filename);
+console.log("extension :", req.body.extension);
+
     // Jika customer mengirim gambar bukti transfer
 
 if (type === "image") {
