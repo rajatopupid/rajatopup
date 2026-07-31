@@ -695,7 +695,7 @@ console.log("url       :", req.body.url);
 console.log("filename  :", req.body.filename);
 console.log("extension :", req.body.extension);
 
-const admin = (process.env.ADMIN_NOTIFY_WA || "").replace(/\D/g, "");
+const admin = (process.env.ADMIN_ACC_WA || "").replace(/\D/g, "");
 
 if (sender === admin) {
 
