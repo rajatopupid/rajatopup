@@ -345,6 +345,15 @@ app.get("/admin", isAdmin, async (req, res) => {
     const users = await read(USERS);
     const orders = await read(ORDERS);
 
+console.log("JUMLAH ORDER :", orders.length);
+
+console.log(
+    orders.map(o => ({
+        ref: o.ref_id,
+        status: o.status
+    }))
+);
+
     res.render("admin/dashboard", {
         admin: req.session.user,
         totalProduct: products.length,
@@ -712,6 +721,8 @@ if (text.toUpperCase().startsWith("ACC ")) {
 
     console.log("REF :", ref);
 
+console.log("REF DICARI :", JSON.stringify(ref));
+
     const order = orders.find(o => o.ref_id === ref);
 
     console.log("ORDER :", order);
@@ -722,6 +733,56 @@ if (text.toUpperCase().startsWith("ACC ")) {
 
         return res.send("OK");
     }
+
+// =========================
+// CEK STATUS ORDER
+// =========================
+
+if (order.status === "PROCESS") {
+
+    await sendWA(sender,
+`⚠️ Invoice ${order.ref_id} sedang diproses.
+
+Mohon tunggu hingga transaksi selesai.`);
+
+    return res.send("OK");
+}
+
+if (order.status === "SUCCESS") {
+
+    await sendWA(sender,
+`✅ Invoice ${order.ref_id} sudah berhasil diproses sebelumnya.`);
+
+    return res.send("OK");
+}
+
+if (order.status === "DITOLAK") {
+
+    await sendWA(sender,
+`❌ Invoice ${order.ref_id} sudah ditolak sebelumnya.`);
+
+    return res.send("OK");
+}
+
+if (order.status === "FAILED") {
+
+    await sendWA(sender,
+`❌ Invoice ${order.ref_id} sebelumnya gagal diproses.
+
+Silakan lakukan pengecekan terlebih dahulu.`);
+
+    return res.send("OK");
+}
+
+if (order.status !== "PENDING") {
+
+    await sendWA(sender,
+`⚠️ Invoice ${order.ref_id} tidak dapat diproses.
+
+Status saat ini: ${order.status}`);
+
+    return res.send("OK");
+}
 
     order.status = "PROCESS";
 
