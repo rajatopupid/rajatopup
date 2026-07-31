@@ -679,22 +679,66 @@ app.use(express.json());
 
 app.post("/webhook/fonnte", async (req, res) => {
 
-app.get("/webhook/fonnte", (req, res) => {
-    res.send("Webhook RajaTopUp Aktif");
-});
-
     console.log("=== PESAN MASUK ===");
     console.log(req.body);
 
-const sender = (req.body.sender || "").replace(/\D/g, "");
-const message = (
-    req.body.pesan ||
-    req.body.message ||
-    ""
-).trim().toUpperCase();
+    const sender = (req.body.sender || "").replace(/\D/g, "");
+    const text = (req.body.pesan || req.body.message || "").trim();
+    const type = req.body.type || "";
 
-console.log("Pengirim :", sender);
-console.log("Pesan    :", message);
+    console.log("Pengirim :", sender);
+    console.log("Tipe :", type);
+    console.log("Pesan :", text);
+
+    // Jika customer mengirim gambar bukti transfer
+
+if (type === "image") {
+
+    console.log("📷 Bukti transfer diterima");
+
+    const orders = await read(ORDERS);
+
+    const order = orders
+        .filter(o => o.whatsapp === sender && o.status === "PENDING")
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0];
+
+    if (!order) {
+
+        await sendWA(sender,
+`❌ Tidak ada pesanan yang masih menunggu pembayaran.`);
+
+        return res.send("OK");
+    }
+
+    order.status = "MENUNGGU_VERIFIKASI";
+    order.bukti = req.body.url || "";
+    order.waktu_upload = new Date().toISOString();
+
+    await write(ORDERS, orders);
+
+    await sendWA(process.env.ADMIN_NOTIFY_WA,
+`📥 Bukti pembayaran diterima
+
+Invoice : ${order.ref_id}
+Produk : ${order.nama_produk}
+User ID : ${order.tujuan}
+Total : Rp ${Number(order.harga).toLocaleString("id-ID")}
+
+Silakan cek pembayaran.
+
+Balas:
+ACC ${order.ref_id}`);
+
+    await sendWA(sender,
+`✅ Bukti pembayaran berhasil diterima.
+
+Mohon tunggu, admin sedang memverifikasi pembayaran Anda.`);
+}
+
+        // Nanti kita cari order berdasarkan nomor WA
+        // lalu ubah status menjadi MENUNGGU_VERIFIKASI
+
+    }
 
     res.send("OK");
 });
