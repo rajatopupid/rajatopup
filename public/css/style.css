@@ -1743,10 +1743,11 @@ color:#bbb;
 }
 
 .category-image{
-    width:90px;
-    height:90px;
-    object-fit:contain;
-    margin-bottom:15px;
+    width: 70px;
+    height: 70px;
+    margin: 25px auto 15px;
+    display: block;
+    object-fit: contain;
 }
 
 .category-card h3{

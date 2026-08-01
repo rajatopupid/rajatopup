@@ -19,10 +19,54 @@
 <% brands.forEach(brand => { %>
 
 <%
-let logo="/images/games/freefireLogo.png";
+let logo = "/images/default.png";
 
-if(brand.toUpperCase().includes("MOBILE")){
-    logo="/images/games/mlbblogo.png";
+switch(brand.toUpperCase()){
+
+case "FREE FIRE":
+logo="/images/games/freefireLogo.png";
+break;
+
+case "MOBILE LEGENDS":
+logo="/images/games/mlbblogo.png";
+break;
+
+case "AXIS":
+logo="/images/pulsa/axis.png";
+break;
+
+case "BY.U":
+logo="/images/pulsa/byu.png";
+break;
+
+case "TELKOMSEL":
+logo="/images/pulsa/telkomsel.png";
+break;
+
+case "INDOSAT":
+logo="/images/pulsa/indosat.png";
+break;
+
+case "SMARTFREN":
+logo="/images/pulsa/smartfren.png";
+break;
+
+case "TRI":
+logo="/images/pulsa/tri.png";
+break;
+
+case "XL":
+logo="/images/pulsa/xl.png";
+break;
+
+case "PLN":
+logo="/images/pln/pln.png";
+break;
+
+case "TOKEN PLN":
+logo="/images/pln/pln.png";
+break;
+
 }
 %>
 
