@@ -110,11 +110,32 @@ const response = await syncProducts();
 
 const data = response.data || [];
 
+const aktif = data.filter(item =>
+    item.buyer_product_status &&
+    item.seller_product_status
+);
+
+const cheapest = {};
+
+for (const item of aktif) {
+
+    const key = item.product_name.toLowerCase();
+
+    if (
+        !cheapest[key] ||
+        Number(item.price) < Number(cheapest[key].price)
+    ) {
+        cheapest[key] = item;
+    }
+}
+
+const productsData = Object.values(cheapest);
+
         let products = await read("products");
 
         let tambah = 0;
 
-for (const item of data) {
+for (const item of productsData) {
 
             if (
                 !item.buyer_product_status ||
