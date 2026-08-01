@@ -63,19 +63,105 @@ href="/css/style.css">
 
 <div class="topbar">
 
-<h1>
+<div>
 
-Kelola Produk
+<h1>📦 Kelola Produk</h1>
 
-</h1>
+<p style="color:#777;margin-top:5px;">
+Kelola seluruh produk RajaTopUp
+</p>
+
+</div>
+
+<div class="action-group">
 
 <a
 class="btn"
 href="/admin/product/add">
 
-+ Tambah Produk
+➕ Tambah Produk
 
 </a>
+
+<a
+class="btn btn-success"
+href="/admin/products/add-new">
+
+🆕 Tambah Produk Baru
+
+</a>
+
+<a
+class="btn btn-warning"
+href="/admin/products/update-price">
+
+💰 Update Harga Modal
+
+</a>
+
+</div>
+
+</div>
+
+<% if (req.query.new) { %>
+
+<div class="alert-success">
+
+✅ Berhasil menambahkan
+<b><%= req.query.new %></b>
+produk baru dari Digiflazz.
+
+</div>
+
+<% } %>
+
+<% if(req.query.update){ %>
+
+<div class="alert-success">
+
+💰 Berhasil memperbarui
+<b><%= req.query.update %></b>
+harga modal.
+
+</div>
+
+<% } %>
+
+<div class="dashboard-grid">
+
+<div class="box">
+
+<h3>Total Produk</h3>
+
+<h2><%= products.length %></h2>
+
+</div>
+
+<div class="box">
+
+<h3>Produk Aktif</h3>
+
+<h2><%= products.filter(x=>x.status).length %></h2>
+
+</div>
+
+<div class="box">
+
+<h3>Produk Nonaktif</h3>
+
+<h2><%= products.filter(x=>!x.status).length %></h2>
+
+</div>
+
+</div>
+
+<div class="filter-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="🔍 Cari produk..."
+onkeyup="searchProduct()">
 
 </div>
 
@@ -230,6 +316,29 @@ href="/admin/product/delete/<%= p.id %>">
 </main>
 
 </div>
+
+<script>
+
+function searchProduct(){
+
+const keyword=document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const rows=document.querySelectorAll("tbody tr");
+
+rows.forEach(row=>{
+
+row.style.display=
+row.innerText.toLowerCase().includes(keyword)
+?"":"none";
+
+});
+
+}
+
+</script>
 
 </body>
 

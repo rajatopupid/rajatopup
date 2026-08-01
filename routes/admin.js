@@ -343,6 +343,14 @@ res.redirect("/admin/banner");
 });
 
 // ===============================
+// TAMBAH PRODUK BARU DIGIFLAZZ
+// ===============================
+
+router.get("/products/add-new", productController.addNewProducts);
+
+router.get("/products/update-price", productController.updatePrice);
+
+// ===============================
 // SYNC PRODUK DIGIFLAZZ
 // ===============================
 

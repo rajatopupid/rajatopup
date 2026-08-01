@@ -162,11 +162,14 @@ app.locals.process = process;
 
 function isAdmin(req, res, next) {
 
-    if (!req.session.user) {
-        return res.redirect("/login");
+    if (!req.session.admin) {
+        return res.redirect("/admin/login");
     }
 
-    if (req.session.user.role !== "admin") {
+    if (
+        req.session.admin.role !== "admin" &&
+        req.session.admin.role !== "superadmin"
+    ) {
         return res.status(403).send("403 - Akses Ditolak");
     }
 
@@ -321,19 +324,22 @@ app.get("/about", (req, res) => {
 });
 
 // =========================
-// ADMIN LOGIN
+// ADMIN MIDDLEWARE
 // =========================
 
-app.get("/admin/login", (req, res) => {
+function isAdmin(req, res, next) {
 
-    if (req.session.admin) {
-        return res.redirect("/admin/dashboard");
+    if (!req.session.user) {
+        return res.redirect("/login");
     }
 
-    res.render("admin/login");
+    if (req.session.user.role !== "admin") {
+        return res.status(403).send("403 - Akses Ditolak");
+    }
 
-});
+    next();
 
+}
 
 // =========================
 // ADMIN DASHBOARD
@@ -373,13 +379,11 @@ app.get("/admin/products", isAdmin, async (req, res) => {
     const products = await read(PRODUCTS);
 
     res.render("admin/products", {
-        admin: req.session.admin,
+        admin: req.session.user,
         products
     });
 
 });
-
-
 
 // =========================
 // ADD PRODUCT

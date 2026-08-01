@@ -91,6 +91,165 @@ return res.redirect("/admin?sync=success");
 }
 
 // ===============================
+// TAMBAH PRODUK BARU
+// ===============================
+
+async function addNewProducts(req, res) {
+
+    try {
+
+        const settings = await read("settings");
+
+        const markup = Number(settings.markup || 1000);
+
+        const response = await syncProducts();
+
+        if (!response.data || !Array.isArray(response.data)) {
+
+            return res.status(500).json({
+                success: false,
+                message: "Produk Digiflazz tidak ditemukan."
+            });
+
+        }
+
+        let products = await read("products");
+
+        let tambah = 0;
+
+        for (const item of response.data) {
+
+            if (
+                !item.buyer_product_status ||
+                !item.seller_product_status
+            ) continue;
+
+            const sudahAda = products.find(
+                p => p.kode === item.buyer_sku_code
+            );
+
+            if (sudahAda) continue;
+
+            products.push({
+
+                id: item.buyer_sku_code,
+
+                kode: item.buyer_sku_code,
+
+                nama: item.product_name,
+
+                brand: item.brand,
+
+                category: item.category,
+
+                type: item.type,
+
+                seller: item.seller_name,
+
+                harga_modal: Number(item.price),
+
+                harga_jual: Number(item.price) + markup,
+
+                status: true,
+
+                seller_status: true,
+
+                unlimited_stock: item.unlimited_stock,
+
+                stock: item.stock,
+
+                multi: item.multi,
+
+                desc: item.desc || "",
+
+                updated_at: new Date().toISOString()
+
+            });
+
+            tambah++;
+
+        }
+
+        await write("products", products);
+
+        return res.redirect(
+            "/admin/products?new=" + tambah
+        );
+
+    } catch (err) {
+
+        res.status(500).json({
+
+            success: false,
+
+            message: err.message
+
+        });
+
+    }
+
+}
+
+// ===============================
+// UPDATE HARGA MODAL
+// ===============================
+
+async function updatePrice(req, res){
+
+    try{
+
+        const response = await syncProducts();
+
+        if(!response.data || !Array.isArray(response.data)){
+
+            return res.status(500).json({
+                success:false,
+                message:"Produk Digiflazz tidak ditemukan."
+            });
+
+        }
+
+        let products = await read("products");
+
+        let update = 0;
+
+        for(const item of response.data){
+
+            const index = products.findIndex(
+                p => p.kode === item.buyer_sku_code
+            );
+
+            if(index === -1) continue;
+
+            products[index].harga_modal = Number(item.price);
+
+            products[index].updated_at = new Date().toISOString();
+
+            update++;
+
+        }
+
+        await write("products", products);
+
+        return res.redirect(
+            "/admin/products?update="+update
+        );
+
+    }catch(err){
+
+        res.status(500).json({
+
+            success:false,
+
+            message:err.message
+
+        });
+
+    }
+
+}
+
+// ===============================
 // LIST PRODUK
 // ===============================
 
@@ -149,6 +308,10 @@ async function detail(req, res) {
 module.exports = {
 
     sync,
+
+    addNewProducts,
+
+    updatePrice,
 
     list,
 
