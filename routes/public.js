@@ -39,7 +39,8 @@ async function write(file, data) {
 
 router.get("/", async (req, res) => {
 
-let products = await read(PRODUCTS);
+let products = (await read(PRODUCTS))
+.filter(p => p.status !== false);
 
 products = products.filter(p =>
 [
@@ -81,7 +82,8 @@ products = products.filter(p =>
 
 router.get("/product/:id", async (req, res) => {
 
-    const products = await read(PRODUCTS);
+const products = (await read(PRODUCTS))
+.filter(p => p.status !== false);
 
     const product = products.find(
 
@@ -115,7 +117,8 @@ router.get("/search", async (req, res) => {
         req.query.q || ""
     ).toLowerCase();
 
-    const products = await read(PRODUCTS);
+const products = (await read(PRODUCTS))
+.filter(p => p.status !== false);
 
     const result = products.filter(p =>
 
@@ -143,7 +146,8 @@ router.get("/search", async (req, res) => {
 
 router.get("/category/:category", async (req, res) => {
 
-    const products = await read(PRODUCTS);
+const products = (await read(PRODUCTS))
+.filter(p => p.status !== false);
 
     const category = req.params.category.toUpperCase();
 
@@ -167,7 +171,8 @@ router.get("/category/:category", async (req, res) => {
 
 router.get("/category/:category/:brand", async (req, res) => {
 
-    const products = await read(PRODUCTS);
+const products = (await read(PRODUCTS))
+.filter(p => p.status !== false);
 
     const data = products.filter(p =>
 

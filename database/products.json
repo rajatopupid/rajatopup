@@ -649,7 +649,7 @@
   },
   {
     "id": "if5g30d",
-    "kode": "if5g30d",
+    "kode": "IF5G30D",
     "nama": "Indosat Freedom Internet 5.5 GB 28 Hari",
     "brand": "INDOSAT",
     "category": "Data",
@@ -663,7 +663,8 @@
     "stock": 0,
     "multi": true,
     "desc": "Freedom Internet 5.5GB/28 Hari",
-    "updated_at": "2026-08-01T12:22:55.464Z"
+    "updated_at": "2026-08-01T12:22:55.464Z",
+    "game": "Data"
   },
   {
     "id": "kvision180d",
