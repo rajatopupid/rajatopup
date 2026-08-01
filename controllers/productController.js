@@ -121,11 +121,22 @@ for (const item of data) {
                 !item.seller_product_status
             ) continue;
 
-            const sudahAda = products.find(
-                p => p.kode === item.buyer_sku_code
-            );
+const sudahAda = products.find(
+    p => p.kode === item.buyer_sku_code
+);
 
-            if (sudahAda) continue;
+if (sudahAda) {
+
+    if (Number(item.price) < Number(sudahAda.harga_modal)) {
+
+        sudahAda.harga_modal = Number(item.price);
+        sudahAda.harga_jual = Number(item.price) + markup;
+        sudahAda.seller = item.seller_name;
+
+    }
+
+    continue;
+}
 
             products.push({
 
