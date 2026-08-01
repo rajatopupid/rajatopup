@@ -15,6 +15,8 @@ async function sync(req, res) {
 
         const response = await syncProducts();
 
+return res.json(response);
+
 console.log("Keys:", Object.keys(response));
 console.log("Total:", response.data?.length);
 console.log(response.data?.slice(0, 10));
@@ -96,28 +98,23 @@ return res.redirect("/admin?sync=success");
 
 async function addNewProducts(req, res) {
 
+console.log("=== MASUK addNewProducts ===");
+
     try {
 
         const settings = await read("settings");
 
         const markup = Number(settings.markup || 1000);
 
-        const response = await syncProducts();
+const response = await syncProducts();
 
-        if (!response.data || !Array.isArray(response.data)) {
-
-            return res.status(500).json({
-                success: false,
-                message: "Produk Digiflazz tidak ditemukan."
-            });
-
-        }
+const data = response.data || [];
 
         let products = await read("products");
 
         let tambah = 0;
 
-        for (const item of response.data) {
+for (const item of data) {
 
             if (
                 !item.buyer_product_status ||

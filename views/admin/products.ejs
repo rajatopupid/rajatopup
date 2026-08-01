@@ -103,24 +103,24 @@ href="/admin/products/update-price">
 
 </div>
 
-<% if (req.query.new) { %>
+<% if (query.new) { %>
 
 <div class="alert-success">
 
 ✅ Berhasil menambahkan
-<b><%= req.query.new %></b>
+<b><%= query.new %></b>
 produk baru dari Digiflazz.
 
 </div>
 
 <% } %>
 
-<% if(req.query.update){ %>
+<% if(query.update){ %>
 
 <div class="alert-success">
 
 💰 Berhasil memperbarui
-<b><%= req.query.update %></b>
+<b><%= query.update %></b>
 harga modal.
 
 </div>

@@ -378,10 +378,11 @@ app.get("/admin/products", isAdmin, async (req, res) => {
 
     const products = await read(PRODUCTS);
 
-    res.render("admin/products", {
-        admin: req.session.user,
-        products
-    });
+res.render("admin/products", {
+    admin: req.session.admin,
+    products,
+    query: req.query
+});
 
 });
 
