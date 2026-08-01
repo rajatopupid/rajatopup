@@ -615,6 +615,45 @@ async(req,res)=>{
 });
 
 // =========================
+// ADMIN ORDERS
+// =========================
+
+app.get("/admin/orders", isAdmin, async (req, res) => {
+
+    const orders = await read(ORDERS);
+
+    res.render("admin/orders", {
+        admin: req.session.user,
+        orders
+    });
+
+});
+
+app.get("/admin/order/cancel/:ref_id", isAdmin, async (req, res) => {
+
+    const orders = await read(ORDERS);
+
+    console.log("REF URL :", req.params.ref_id);
+
+    console.log("REF DATABASE :", orders.map(o => o.ref_id));
+
+    const index = orders.findIndex(
+        o => String(o.ref_id) === String(req.params.ref_id)
+    );
+
+    if (index === -1) {
+        return res.send("Pesanan tidak ditemukan");
+    }
+
+    orders[index].status = "CANCELED";
+
+    await write(ORDERS, orders);
+
+    res.redirect("/admin/orders");
+
+});
+
+// =========================
 // PRODUK KODE
 // ======================
 app.get(

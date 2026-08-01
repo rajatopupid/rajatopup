@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Kelola Pesanan</title>
+
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+<aside class="sidebar">
+
+<h2>👑 RajaTopUp</h2>
+
+<a href="/admin/dashboard">
+🏠 Dashboard
+</a>
+
+<a href="/admin/products">
+📦 Kelola Produk
+</a>
+
+<a href="/admin/product/add">
+➕ Tambah Produk
+</a>
+
+<a href="/admin/products/add-new">
+🆕 Tambah Produk Baru
+</a>
+
+<a href="/admin/products/update-price">
+💰 Update Harga Modal
+</a>
+
+<a class="active" href="/admin/orders">
+🛒 Pesanan
+</a>
+
+<a href="/admin/banner">
+🖼 Banner
+</a>
+
+<a href="/admin/settings">
+⚙ Pengaturan
+</a>
+
+<a href="/">
+🌐 Lihat Website
+</a>
+
+<a href="/logout">
+🚪 Logout
+</a>
+
+</aside>
+
+<main class="content">
+
+<div class="topbar">
+
+<div>
+
+<h1>🛒 Kelola Pesanan</h1>
+
+<p style="color:#777;margin-top:5px;">
+Kelola seluruh pesanan pelanggan
+</p>
+
+</div>
+
+</div>
+
+<div class="dashboard-grid">
+
+<div class="box">
+<h3>Total Pesanan</h3>
+<h2><%= orders.length %></h2>
+</div>
+
+<div class="box">
+<h3>Pending</h3>
+<h2><%= orders.filter(x=>x.status==="Pending").length %></h2>
+</div>
+
+<div class="box">
+<h3>Berhasil</h3>
+<h2><%= orders.filter(x=>x.status==="Success").length %></h2>
+</div>
+
+<div class="box">
+<h3>Dibatalkan</h3>
+<h2><%= orders.filter(x=>x.status==="Canceled").length %></h2>
+</div>
+
+</div>
+
+<div class="filter-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="🔍 Cari Invoice / Produk..."
+onkeyup="searchOrder()">
+
+</div>
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Invoice</th>
+
+<th>Produk</th>
+
+<th>Tujuan</th>
+
+<th>Total</th>
+
+<th>Status</th>
+
+<th>Aksi</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<% if (orders.length === 0) { %>
+
+<tr>
+
+<td colspan="6" style="text-align:center">
+
+Belum ada pesanan
+
+</td>
+
+</tr>
+
+<% } %>
+
+<% orders.forEach(o => { %>
+
+<tr>
+
+<td>
+<%= o.ref_id || "-" %>
+</td>
+
+<td>
+<%= o.nama_produk || o.produk || "-" %>
+</td>
+
+<td>
+<%= o.tujuan || "-" %>
+</td>
+
+<td>
+
+Rp
+<%= Number(o.harga || 0).toLocaleString("id-ID") %>
+
+</td>
+
+<td>
+
+<%
+const status = (o.status || "").toUpperCase();
+%>
+
+<% if(status === "SUCCESS"){ %>
+
+<span class="badge-active">Berhasil</span>
+
+<% } else if(status === "PENDING"){ %>
+
+<span class="badge-warning">Pending</span>
+
+<% } else if(status === "CANCELED"){ %>
+
+<span class="badge-disable">Dibatalkan</span>
+
+<% } else { %>
+
+<span class="badge-disable"><%= status %></span>
+
+<% } %>
+
+</td>
+
+<td>
+
+<a
+class="btn-small"
+href="/admin/order/<%= o.ref_id %>">
+
+👁 Detail
+
+</a>
+
+<% if((o.status || "").toUpperCase() === "PENDING"){ %>
+
+<a
+class="btn-small-danger"
+onclick="return confirm('Batalkan pesanan ini?')"
+href="/admin/order/cancel/<%= o.ref_id %>">
+
+❌ Batal
+
+</a>
+
+<% } %>
+
+</td>
+
+</tr>
+
+<% }) %>
+
+</tbody>
+
+</table>
+
+</main>
+
+</div>
+
+<script>
+
+function searchOrder(){
+
+const keyword =
+document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+const rows =
+document.querySelectorAll("tbody tr");
+
+rows.forEach(row=>{
+
+row.style.display =
+row.innerText
+.toLowerCase()
+.includes(keyword)
+? ""
+: "none";
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
