@@ -14,5 +14,19 @@
     "password": "11",
     "role": "user",
     "createdAt": "2026-07-15T05:35:06.848Z"
+  },
+  {
+    "id": "1785776355678",
+    "userId": "ID000001",
+    "username": "admin",
+    "email": "rajatopup56@gmail.com",
+    "password": "1",
+    "role": "user",
+    "wallet": {
+      "saldo": 0,
+      "level": "REGULAR",
+      "history": []
+    },
+    "createdAt": "2026-08-03T16:59:15.679Z"
   }
 ]

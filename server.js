@@ -9,6 +9,7 @@ const morgan = require("morgan");
 const path = require("path");
 const fs = require("fs-extra");
 const { sendWA } = require("./services/fonnte");
+const { generateUserId } = require("./services/idGenerator");
 
 const {
     addSaldo,
@@ -232,7 +233,7 @@ app.get("/register", (req, res) => {
     res.render("register");
 });
 
-app.post("/register", (req, res) => {
+app.post("/register", async (req, res) => {
 
     const { username, email, password, confirmPassword } = req.body;
 
@@ -260,14 +261,26 @@ app.post("/register", (req, res) => {
         return res.send("Email sudah digunakan.");
     }
 
-    users.push({
-        id: Date.now().toString(),
-        username,
-        email,
-        password,
-        role: "user",
-        createdAt: new Date().toISOString()
-    });
+const userId = await generateUserId();
+
+users.push({
+    id: Date.now().toString(),
+
+    userId,
+
+    username,
+    email,
+    password,
+    role: "user",
+
+    wallet: {
+        saldo: 0,
+        level: "REGULAR",
+        history: []
+    },
+
+    createdAt: new Date().toISOString()
+});
 
     fs.writeFileSync(usersFile, JSON.stringify(users, null, 2));
 

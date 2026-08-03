@@ -301,7 +301,22 @@ value="<%= product.kode %>">
 🆔 Data Tujuan
 </div>
 
-<% if(product.category==="Games"){ %>
+<% if(product.isToken){ %>
+
+<label>ID RajaTopUp</label>
+
+<input
+type="text"
+name="tujuan"
+placeholder="Contoh: ID000001"
+required>
+
+<input
+type="hidden"
+name="server_id"
+value="">
+
+<% } else if(product.category==="Games"){ %>
 
 <label>User ID</label>
 

@@ -7,6 +7,7 @@ const router = express.Router();
 
 const DB = path.join(__dirname, "../database");
 
+const USERS = path.join(__dirname, "../database/users.json");
 const PRODUCTS = path.join(DB, "products.json");
 const SETTINGS = path.join(DB, "settings.json");
 
@@ -324,6 +325,20 @@ const totalBayar = hargaProduk + biayaAdmin;
 const ref_id = "RTU" + Date.now();
 
 const isToken = product.isToken === true;
+
+const users = await read(USERS);
+
+if (isToken) {
+
+    const tujuanUser = users.find(
+        u => u.userId === req.body.tujuan
+    );
+
+    if (!tujuanUser) {
+        return res.send("❌ ID RajaTopUp tidak ditemukan.");
+    }
+
+}
 
 const order = {
 
