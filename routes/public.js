@@ -84,6 +84,8 @@ products = products.filter(p =>
 
 router.get("/wallet", async (req, res) => {
 
+console.log(req.session.user);
+
     const phone = (req.query.phone || "").replace(/\D/g, "");
 
     if (!phone) {
