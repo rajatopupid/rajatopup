@@ -95,7 +95,7 @@ console.log(req.session.user);
         });
     }
 
-    const wallet = await getWallet(phone);
+const wallet = await getWallet(req.body.tujuan);
 
     res.render("wallet", {
         wallet,

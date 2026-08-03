@@ -4,8 +4,7 @@ const path = require("path");
 
 const DB = path.join(__dirname, "..", "database");
 
-const WALLET = path.join(DB, "wallet.json");
-const WALLET_HISTORY = path.join(DB, "wallet_history.json");
+const USERS = path.join(DB, "users.json");
 
 // Ambil semua wallet
 async function getWallets() {
@@ -43,55 +42,57 @@ async function getWallet(phone) {
 }
 
 // Tambah saldo
-async function addSaldo(phone, amount) {
+async function addSaldo(userId, amount) {
 
-console.log("PHONE :", phone);
-console.log("AMOUNT :", amount);
+    const users = await fs.readJson(USERS);
 
-    const wallets = await getWallets();
+    const user = users.find(u => u.userId === userId);
 
-    let wallet = wallets.find(x => x.phone === phone);
+    if (!user) return null;
 
-    if (!wallet) {
-
-        wallet = {
-            id: nanoid(),
-            phone,
+    if (!user.wallet) {
+        user.wallet = {
             saldo: 0,
-            level: "regular",
-            createdAt: new Date().toISOString()
+            level: "REGULAR",
+            history: []
         };
-
-        wallets.push(wallet);
     }
 
-    wallet.saldo += Number(amount);
+    user.wallet.saldo += Number(amount);
 
-console.log("SALDO BARU :", wallet.saldo);
+    await fs.writeJson(USERS, users, { spaces: 2 });
 
-    await saveWallets(wallets);
-
-    return wallet;
+    return user.wallet;
 }
 
 // Kurangi saldo
-async function cutSaldo(phone, amount) {
+async function cutSaldo(userId, amount) {
 
-    const wallets = await getWallets();
+    const users = await fs.readJson(USERS);
 
-    const wallet = wallets.find(x => x.phone === phone);
+    const user = users.find(u => u.userId === userId);
 
-    if (!wallet)
-        return null;
+    if (!user) return null;
 
-    if (wallet.saldo < amount)
+    if (!user.wallet) {
+        user.wallet = {
+            saldo: 0,
+            level: "REGULAR",
+            history: []
+        };
+    }
+
+    amount = Number(amount);
+
+    if (user.wallet.saldo < amount) {
         return false;
+    }
 
-    wallet.saldo -= Number(amount);
+    user.wallet.saldo -= amount;
 
-    await saveWallets(wallets);
+    await fs.writeJson(USERS, users, { spaces: 2 });
 
-    return wallet;
+    return user.wallet;
 }
 
 // Simpan riwayat wallet

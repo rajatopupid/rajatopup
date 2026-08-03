@@ -859,7 +859,7 @@ if (order.isToken) {
 
     console.log("=== TOKEN RAJATOPUP ===");
 
-    const phone = (order.whatsapp || "").replace(/\D/g, "");
+    const userId = (order.tujuan || "").trim();
 
     if (!phone) {
 
@@ -871,7 +871,7 @@ if (order.isToken) {
         return res.send("OK");
     }
 
-    await addSaldo(phone, order.harga);
+await addSaldo(userId, order.harga);
 
     await addHistory(
         phone,
