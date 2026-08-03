@@ -45,6 +45,9 @@ async function getWallet(phone) {
 // Tambah saldo
 async function addSaldo(phone, amount) {
 
+console.log("PHONE :", phone);
+console.log("AMOUNT :", amount);
+
     const wallets = await getWallets();
 
     let wallet = wallets.find(x => x.phone === phone);
@@ -63,6 +66,8 @@ async function addSaldo(phone, amount) {
     }
 
     wallet.saldo += Number(amount);
+
+console.log("SALDO BARU :", wallet.saldo);
 
     await saveWallets(wallets);
 

@@ -1,3 +1,28 @@
+<script>
+function copyId() {
+
+    const id = document.getElementById("userId").innerText.trim();
+
+    navigator.clipboard.writeText(id)
+    .then(() => {
+        alert("✅ ID RajaTopUp berhasil disalin");
+    })
+    .catch(() => {
+
+        // Fallback untuk browser yang tidak mendukung
+        const input = document.createElement("input");
+        input.value = id;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        document.body.removeChild(input);
+
+        alert("✅ ID RajaTopUp berhasil disalin");
+    });
+
+}
+</script>
+
 <%- include("partials/header") %>
 
 <style>
@@ -11,8 +36,15 @@
 }
 
 .wallet-box h3{
-    margin:0 0 10px;
-    color:#f4b400;
+    color:#111;      /* sebelumnya kuning */
+    margin-bottom:12px;
+}
+
+.wallet-box small{
+    color:#666;
+    display:block;
+    margin-top:8px;
+    font-size:14px;
 }
 
 .wallet-box h1{
@@ -26,21 +58,71 @@
     font-size:18px;
     color:#222;
 }
+
+.wallet-id{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin:15px 0;
+    flex-wrap:wrap;
+}
+
+.wallet-id span{
+    font-size:30px;
+    font-weight:bold;
+    color:#f4b400;
+    letter-spacing:1px;
+}
+
+.copy-btn{
+    background:#f4b400;
+    color:#111;
+    border:none;
+    border-radius:10px;
+    padding:10px 16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.copy-btn:hover{
+    transform:scale(1.05);
+}
+
+.copy-btn:active{
+    transform:scale(.95);
+}
 </style>
 
 <div class="container">
 
     <h2>🪙 Wallet RajaTopUp</h2>
 
-<div class="card">
+<div class="wallet-box">
 
-    <h3>RajaTopUp</h3>
+        <h3>ID RajaTopUp</h3>
 
-    <h2><%= user.userId %></h2>
+        <div class="wallet-id">
 
-    <small>Gunakan ID ini untuk menerima saldo RajaTopUp.</small>
+            <span id="userId">
+                <%= user.userId %>
+            </span>
 
-</div>
+            <button
+                type="button"
+                class="copy-btn"
+                onclick="copyId()">
+                📋 Salin
+            </button>
+
+        </div>
+
+        <small>
+            Gunakan ID ini untuk menerima saldo RajaTopUp.
+        </small>
+
+    </div>
 
     <div class="wallet-box">
 
