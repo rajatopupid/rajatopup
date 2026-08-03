@@ -1,0 +1,65 @@
+<%- include("partials/header") %>
+
+<style>
+.wallet-box{
+    background:#fff;
+    color:#222;
+    border-radius:16px;
+    padding:20px;
+    margin-bottom:18px;
+    box-shadow:0 4px 12px rgba(0,0,0,.15);
+}
+
+.wallet-box h3{
+    margin:0 0 10px;
+    color:#f4b400;
+}
+
+.wallet-box h1{
+    margin:0;
+    font-size:36px;
+    font-weight:bold;
+}
+
+.wallet-box p{
+    margin:0;
+    font-size:18px;
+    color:#222;
+}
+</style>
+
+<div class="container">
+
+    <h2>🪙 Wallet RajaTopUp</h2>
+
+    <div class="wallet-box">
+
+        <h3>Saldo Token</h3>
+
+        <h1>
+            Rp <%= wallet ? Number(wallet.saldo).toLocaleString("id-ID") : 0 %>
+        </h1>
+
+    </div>
+
+    <div class="wallet-box">
+
+        <h3>Status</h3>
+
+        <p>
+            <%= wallet ? wallet.level.toUpperCase() : "REGULAR" %>
+        </p>
+
+    </div>
+
+    <div class="wallet-box">
+
+        <h3>Riwayat</h3>
+
+        <p>Belum ada transaksi.</p>
+
+    </div>
+
+</div>
+
+<%- include("partials/footer") %>

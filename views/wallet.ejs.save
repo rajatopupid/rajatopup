@@ -1,0 +1,37 @@
+<%- include("partials/header") %>
+
+<div class="container">
+
+    <h2>🪙 Wallet RajaTopUp</h2>
+
+    <div class="card">
+
+        <h3>Saldo Token</h3>
+
+<h1>
+Rp <%= wallet ? Number(wallet.saldo).toLocaleString("id-ID") : 0 %>
+</h1>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Status</h3>
+
+<p>
+<%= wallet ? wallet.level.toUpperCase() : "REGULAR" %>
+</p>
+
+    </div>
+
+    <div class="card">
+
+        <h3>Riwayat</h3>
+
+        <p>Belum ada transaksi.</p>
+
+    </div>
+
+</div>
+
+<%- include("partials/footer") %>

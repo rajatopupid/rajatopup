@@ -10,6 +10,12 @@ const path = require("path");
 const fs = require("fs-extra");
 const { sendWA } = require("./services/fonnte");
 
+const {
+    addSaldo,
+    addHistory,
+    upgradeLevel
+} = require("./services/wallet");
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -25,6 +31,8 @@ const USERS = path.join(DB, "users.json");
 const ADMINS = path.join(DB, "admins.json");
 const PRODUCTS = path.join(DB, "products.json");
 const ORDERS = path.join(DB, "orders.json");
+const WALLET = path.join(DB, "wallet.json");
+const WALLET_HISTORY = path.join(DB, "wallet_history.json");
 const TRANSACTIONS = path.join(DB, "transactions.json");
 const SETTINGS = path.join(DB, "settings.json");
 const GUEST = path.join(DB, "guest.json");
@@ -534,15 +542,17 @@ async function ensureDatabase() {
 
     await fs.ensureDir(DB);
 
-    const files = [
-        USERS,
-        ADMINS,
-        PRODUCTS,
-        ORDERS,
-        TRANSACTIONS,
-        SETTINGS,
-        GUEST
-    ];
+const files = [
+    USERS,
+    ADMINS,
+    PRODUCTS,
+    ORDERS,
+    TRANSACTIONS,
+    WALLET,
+    WALLET_HISTORY,
+    SETTINGS,
+    GUEST
+];
 
     for (const file of files) {
 
@@ -764,8 +774,9 @@ if (text.toUpperCase().startsWith("ACC ")) {
     const ref = text.substring(4).trim();
 
     console.log("REF :", ref);
-
 console.log("REF DICARI :", JSON.stringify(ref));
+console.log("TOTAL ORDER:", orders.length);
+console.log("SEMUA REF:", orders.map(o => o.ref_id));
 
     const order = orders.find(o => o.ref_id === ref);
 
@@ -831,27 +842,81 @@ Status saat ini: ${order.status}`);
 
     await write(ORDERS, orders);
 
-try {
+if (order.isToken) {
 
-    const result = await digiflazz.createTransaction({
+    console.log("=== TOKEN RAJATOPUP ===");
 
-        refId: order.ref_id,
+    const phone = (order.whatsapp || "").replace(/\D/g, "");
 
-        buyerSkuCode: order.produk,
+    if (!phone) {
 
-        customerNo: order.server_id
-            ? `${order.tujuan}${order.server_id}`
-            : order.tujuan
+        await sendWA(
+            sender,
+            "❌ Nomor WhatsApp customer belum tersimpan.\n\nCustomer harus mengirim:\nBAYAR " + order.ref_id
+        );
 
-    });
+        return res.send("OK");
+    }
 
-    console.log("===== DIGIFLAZZ =====");
-    console.log(JSON.stringify(result, null, 2));
+    await addSaldo(phone, order.harga);
 
-} catch (err) {
+    await addHistory(
+        phone,
+        "TOPUP",
+        order.harga,
+        order.nama_produk
+    );
 
-    console.log("===== DIGIFLAZZ ERROR =====");
-    console.log(err.response?.data || err.message);
+    await upgradeLevel(phone, order.harga);
+
+    order.status = "SUCCESS";
+
+    await write(ORDERS, orders);
+
+    await sendWA(
+        phone,
+`🎉 Top Up Token RajaTopUp berhasil!
+
+💰 Saldo berhasil ditambahkan:
+Rp ${Number(order.harga).toLocaleString("id-ID")}
+
+Terima kasih telah menggunakan RajaTopUp ❤️`
+    );
+
+    await sendWA(
+        sender,
+`✅ Token berhasil ditambahkan ke wallet customer.
+
+📄 Invoice : ${order.ref_id}`
+    );
+
+    return res.send("OK");
+
+} else {
+
+    try {
+
+        const result = await digiflazz.createTransaction({
+
+            refId: order.ref_id,
+
+            buyerSkuCode: order.produk,
+
+            customerNo: order.server_id
+                ? `${order.tujuan}${order.server_id}`
+                : order.tujuan
+
+        });
+
+        console.log("===== DIGIFLAZZ =====");
+        console.log(JSON.stringify(result, null, 2));
+
+    } catch (err) {
+
+        console.log("===== DIGIFLAZZ ERROR =====");
+        console.log(err.response?.data || err.message);
+
+    }
 
 }
 

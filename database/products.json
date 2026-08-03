@@ -1367,5 +1367,93 @@
     "multi": true,
     "desc": "-",
     "updated_at": "2026-08-01T12:22:55.464Z"
-  }
+  },
+{
+  "id": "token100000",
+  "kode": "TOKEN100000",
+  "nama": "Top Up Saldo RajaTopUp Rp100.000",
+  "category": "E-MONEY",
+  "brand": "RajaTopUp",
+  "harga_modal": 100000,
+  "harga_jual": 100000,
+  "status": true,
+  "isToken": true
+},
+{
+  "id": "token200000",
+  "kode": "TOKEN200000",
+  "nama": "Top Up Saldo RajaTopUp Rp200.000",
+  "category": "E-MONEY",
+  "brand": "RajaTopUp",
+  "harga_modal": 200000,
+  "harga_jual": 200000,
+  "status": true,
+  "isToken": true
+},
+{
+  "id": "token300000",
+  "kode": "TOKEN300000",
+  "nama": "Top Up Saldo RajaTopUp Rp300.000",
+  "category": "E-MONEY",
+  "brand": "RajaTopUp",
+  "harga_modal": 300000,
+  "harga_jual": 300000,
+  "status": true,
+  "isToken": true
+},
+{
+  "id": "token400000",
+  "kode": "TOKEN400000",
+  "nama": "Top Up Saldo RajaTopUp Rp400.000",
+  "category": "E-MONEY",
+  "brand": "RajaTopUp",
+  "harga_modal": 400000,
+  "harga_jual": 400000,
+  "status": true,
+  "isToken": true
+},
+{
+  "id": "token500000",
+  "kode": "TOKEN500000",
+  "nama": "Top Up Saldo RajaTopUp Rp500.000",
+  "category": "E-MONEY",
+  "brand": "RajaTopUp",
+  "harga_modal": 500000,
+  "harga_jual": 500000,
+  "status": true,
+  "isToken": true
+},
+{
+  "id": "token600000",
+  "kode": "TOKEN600000",
+  "nama": "Top Up Saldo RajaTopUp Rp600.000",
+  "category": "E-MONEY",
+  "brand": "RajaTopUp",
+  "harga_modal": 600000,
+  "harga_jual": 600000,
+  "status": true,
+  "isToken": true
+},
+{
+  "id": "token700000",
+  "kode": "TOKEN700000",
+  "nama": "Top Up Saldo RajaTopUp Rp700.000",
+  "category": "E-MONEY",
+  "brand": "RajaTopUp",
+  "harga_modal": 700000,
+  "harga_jual": 700000,
+  "status": true,
+  "isToken": true
+},
+{
+  "id": "token800000",
+  "kode": "TOKEN800000",
+  "nama": "Top Up Saldo RajaTopUp Rp800.000",
+  "category": "E-MONEY",
+  "brand": "RajaTopUp",
+  "harga_modal": 800000,
+  "harga_jual": 800000,
+  "status": true,
+  "isToken": true
+}
 ]

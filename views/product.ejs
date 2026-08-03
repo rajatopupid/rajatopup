@@ -422,6 +422,16 @@ placeholder="contoh@gmail.com">
 <span>SeaBank</span>
 </label>
 
+<% if ((product.category || "").toUpperCase() !== "E-MONEY") { %>
+
+<label class="payment-item">
+    <input type="radio" name="payment" value="TOKEN">
+    <img src="/images/payment/token.png">
+    <span>Saldo RajaTopUp</span>
+</label>
+
+<% } %>
+
 </div>
 
 </div>

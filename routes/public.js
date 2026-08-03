@@ -1,6 +1,7 @@
 const express = require("express");
 const fs = require("fs-extra");
 const path = require("path");
+const { getWallet } = require("../services/wallet");
 
 const router = express.Router();
 
@@ -77,6 +78,30 @@ products = products.filter(p =>
 });
 
 // =========================
+// WALLET KOIN
+// =========================
+
+router.get("/wallet", async (req, res) => {
+
+    const phone = (req.query.phone || "").replace(/\D/g, "");
+
+    if (!phone) {
+        return res.render("wallet", {
+            wallet: null,
+            history: []
+        });
+    }
+
+    const wallet = await getWallet(phone);
+
+    res.render("wallet", {
+        wallet,
+        history: []
+    });
+
+});
+
+// =========================
 // DETAIL PRODUK
 // =========================
 
@@ -85,11 +110,10 @@ router.get("/product/:id", async (req, res) => {
 const products = (await read(PRODUCTS))
 .filter(p => p.status !== false);
 
-    const product = products.find(
-
-        p => p.id === req.params.id
-
-    );
+const product = products.find(
+    p => p.id === req.params.id ||
+         p.kode === req.params.id
+);
 
     if (!product) {
 
@@ -281,47 +305,61 @@ console.log("Body:", req.body);
 let hargaProduk = product.harga_jual;
 let biayaAdmin = 0;
 
-if (req.body.payment === "QRIS") {
-    biayaAdmin = Math.ceil(hargaProduk * 0.007); // 0,7%
+switch (req.body.payment) {
+
+    case "QRIS":
+        biayaAdmin = Math.ceil(hargaProduk * 0.007); // 0,7%
+        break;
+
+    case "DANA":
+    case "SeaBank":
+    case "TOKEN":
+        biayaAdmin = 0;
+        break;
+
 }
 
 const totalBayar = hargaProduk + biayaAdmin;
 
-    const ref_id = "RTU" + Date.now();
+const ref_id = "RTU" + Date.now();
 
-    const order = {
+const isToken = product.isToken === true;
 
-        id: nanoid(),
+const order = {
 
-        ref_id,
+    id: nanoid(),
 
-        payment: req.body.payment,
+    ref_id,
 
-        produk: product.kode,
+    payment: req.body.payment,
 
-        nama_produk: product.nama,
+    produk: product.kode,
 
-        game: product.game || product.brand || "Free Fire",
+    nama_produk: product.nama,
 
-        tujuan: req.body.tujuan,
+    isToken,
 
-        server_id: req.body.server_id || "",
+    game: product.game || product.brand || "Free Fire",
 
-        email: req.body.email || "",
+    tujuan: req.body.tujuan,
 
-        whatsapp: req.body.whatsapp || "",
+    server_id: req.body.server_id || "",
 
-        harga_produk: hargaProduk,
+    email: req.body.email || "",
 
-        biaya_admin: biayaAdmin,
+    whatsapp: req.body.whatsapp || "",
 
-        harga: totalBayar,
+    harga_produk: hargaProduk,
 
-        status: "PENDING",
+    biaya_admin: biayaAdmin,
 
-        createdAt: new Date().toISOString()
+    harga: totalBayar,
 
-    };
+    status: "PENDING",
+
+    createdAt: new Date().toISOString()
+
+};
 
 let wa = (order.whatsapp || "").replace(/\D/g, "");
 
@@ -338,6 +376,25 @@ if (wa.length < 10) {
 order.whatsapp = wa;
 
     orders.push(order);
+
+if (req.body.payment === "TOKEN") {
+
+    const wallet = await getWallet(
+        (req.body.whatsapp || "").replace(/\D/g, "")
+    );
+
+    if (wallet.saldo < totalBayar) {
+
+        return res.send(`
+        <script>
+        alert("Saldo Token RajaTopUp tidak mencukupi.");
+        history.back();
+        </script>
+        `);
+
+    }
+
+}
 
     await write(ORDERS, orders);
 
