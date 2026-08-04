@@ -144,13 +144,45 @@ function copyId() {
 
     </div>
 
-    <div class="wallet-box">
+<div class="wallet-box">
 
-        <h3>Riwayat</h3>
+    <h3>Riwayat</h3>
+
+    <% if (wallet && wallet.history && wallet.history.length > 0) { %>
+
+        <% wallet.history.forEach(item => { %>
+
+            <div style="border-bottom:1px solid #eee;padding:10px 0;">
+
+                <b>
+                    <%= item.type === "MASUK" ? "🟢 MASUK" : "🔴 KELUAR" %>
+                </b>
+
+                <br>
+
+                Rp <%= Number(item.amount).toLocaleString("id-ID") %>
+
+                <br>
+
+                <small><%= item.description %></small>
+
+                <br>
+
+                <small style="color:#777">
+                    <%= new Date(item.createdAt).toLocaleString("id-ID") %>
+                </small>
+
+            </div>
+
+        <% }) %>
+
+    <% } else { %>
 
         <p>Belum ada transaksi.</p>
 
-    </div>
+    <% } %>
+
+</div>
 
 </div>
 

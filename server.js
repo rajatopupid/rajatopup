@@ -12,9 +12,9 @@ const { sendWA } = require("./services/fonnte");
 const { generateUserId } = require("./services/idGenerator");
 
 const {
+    getWallet,
     addSaldo,
-    addHistory,
-    upgradeLevel
+    cutSaldo
 } = require("./services/wallet");
 
 const app = express();
@@ -32,8 +32,6 @@ const USERS = path.join(DB, "users.json");
 const ADMINS = path.join(DB, "admins.json");
 const PRODUCTS = path.join(DB, "products.json");
 const ORDERS = path.join(DB, "orders.json");
-const WALLET = path.join(DB, "wallet.json");
-const WALLET_HISTORY = path.join(DB, "wallet_history.json");
 const TRANSACTIONS = path.join(DB, "transactions.json");
 const SETTINGS = path.join(DB, "settings.json");
 const GUEST = path.join(DB, "guest.json");
@@ -561,8 +559,6 @@ const files = [
     PRODUCTS,
     ORDERS,
     TRANSACTIONS,
-    WALLET,
-    WALLET_HISTORY,
     SETTINGS,
     GUEST
 ];
@@ -871,20 +867,15 @@ if (order.isToken) {
         return res.send("OK");
     }
 
-await addSaldo(order.tujuan, order.harga);
-
-await addHistory(
+await addSaldo(
     order.tujuan,
-    "MASUK",
     order.harga,
     `Top Up ${order.nama_produk}`
 );
 
-await upgradeLevel(order.tujuan, order.harga);
+order.status = "SUCCESS";
 
-    order.status = "SUCCESS";
-
-    await write(ORDERS, orders);
+await write(ORDERS, orders);
 
 const user = users.find(u => u.userId === userId);
 

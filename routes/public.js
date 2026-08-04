@@ -101,7 +101,7 @@ router.get("/wallet", async (req, res) => {
     res.render("wallet", {
         user,
         wallet,
-        history: []
+        history: wallet?.history || []
     });
 
 });

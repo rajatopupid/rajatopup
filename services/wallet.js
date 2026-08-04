@@ -4,48 +4,12 @@ const path = require("path");
 
 const DB = path.join(__dirname, "..", "database");
 
-const WALLET = path.join(DB, "wallet.json");
-const WALLET_HISTORY = path.join(DB, "wallet_history.json");
-
 const USERS = path.join(DB, "users.json");
 
-// Ambil semua wallet
-async function getWallets() {
-    return await fs.readJson(WALLET);
-}
-
-// Simpan wallet
-async function saveWallets(data) {
-    await fs.writeJson(WALLET, data, { spaces: 2 });
-}
-
-// Cari / buat wallet
-async function getWallet(phone) {
-
-    const wallets = await getWallets();
-
-    let wallet = wallets.find(x => x.phone === phone);
-
-    if (!wallet) {
-
-        wallet = {
-            id: nanoid(),
-            phone,
-            saldo: 0,
-            level: "regular",
-            createdAt: new Date().toISOString()
-        };
-
-        wallets.push(wallet);
-
-        await saveWallets(wallets);
-    }
-
-    return wallet;
-}
-
-// Tambah saldo
-async function addSaldo(userId, amount) {
+// ===========================
+// Tambah Saldo + History + Level
+// ===========================
+async function addSaldo(userId, amount, description = "") {
 
     const users = await fs.readJson(USERS);
 
@@ -61,15 +25,43 @@ async function addSaldo(userId, amount) {
         };
     }
 
-    user.wallet.saldo += Number(amount);
+    amount = Number(amount);
 
-    await fs.writeJson(USERS, users, { spaces: 2 });
+    user.wallet.saldo += amount;
+
+    // Simpan riwayat
+    user.wallet.history.unshift({
+        id: nanoid(),
+        type: "MASUK",
+        amount,
+        description,
+        createdAt: new Date().toISOString()
+    });
+
+    // Upgrade level
+    if (amount >= 1000000) {
+
+        user.wallet.level = "VIP";
+
+    } else if (
+        amount >= 200000 &&
+        user.wallet.level !== "VIP"
+    ) {
+
+        user.wallet.level = "MEMBER";
+    }
+
+    await fs.writeJson(USERS, users, {
+        spaces: 2
+    });
 
     return user.wallet;
 }
 
-// Kurangi saldo
-async function cutSaldo(userId, amount) {
+// ===========================
+// Kurangi Saldo
+// ===========================
+async function cutSaldo(userId, amount, description = "") {
 
     const users = await fs.readJson(USERS);
 
@@ -93,62 +85,46 @@ async function cutSaldo(userId, amount) {
 
     user.wallet.saldo -= amount;
 
-    await fs.writeJson(USERS, users, { spaces: 2 });
-
-    return user.wallet;
-}
-
-// Simpan riwayat wallet
-async function addHistory(phone, type, amount, description = "") {
-
-    const history = await fs.readJson(WALLET_HISTORY);
-
-    history.unshift({
+    user.wallet.history.unshift({
         id: nanoid(),
-        phone,
-        type,
-        amount: Number(amount),
+        type: "KELUAR",
+        amount,
         description,
         createdAt: new Date().toISOString()
     });
 
-    await fs.writeJson(WALLET_HISTORY, history, {
+    await fs.writeJson(USERS, users, {
         spaces: 2
     });
+
+    return user.wallet;
 }
 
-// Upgrade level member / VIP
-async function upgradeLevel(phone, amount) {
+// ===========================
+// Ambil Wallet
+// ===========================
+async function getWallet(userId) {
 
-    const wallets = await getWallets();
+    const users = await fs.readJson(USERS);
 
-    const wallet = wallets.find(x => x.phone === phone);
+    const user = users.find(u => u.userId === userId);
 
-    if (!wallet) return null;
+    if (!user) return null;
 
-    amount = Number(amount);
-
-    if (amount >= 1000000) {
-
-        wallet.level = "vip";
-
-    } else if (amount >= 200000) {
-
-        if (wallet.level !== "vip") {
-            wallet.level = "member";
-        }
-
+    if (!user.wallet) {
+        user.wallet = {
+            saldo: 0,
+            level: "REGULAR",
+            history: []
+        };
     }
 
-    await saveWallets(wallets);
-
-    return wallet;
+    return user.wallet;
 }
 
 module.exports = {
     getWallet,
     addSaldo,
-    cutSaldo,
-    addHistory,
-    upgradeLevel
+    cutSaldo
 };
+
