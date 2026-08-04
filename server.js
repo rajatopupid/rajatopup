@@ -861,11 +861,11 @@ if (order.isToken) {
 
     const userId = (order.tujuan || "").trim();
 
-    if (!phone) {
+    if (!userId) {
 
         await sendWA(
             sender,
-            "❌ Nomor WhatsApp customer belum tersimpan.\n\nCustomer harus mengirim:\nBAYAR " + order.ref_id
+            "❌ ID RajaTopUp customer tidak ditemukan."
         );
 
         return res.send("OK");
@@ -886,8 +886,11 @@ await upgradeLevel(order.tujuan, order.harga);
 
     await write(ORDERS, orders);
 
+const user = users.find(u => u.userId === userId);
+
+if (user?.whatsapp) {
     await sendWA(
-        phone,
+        user.whatsapp,
 `🎉 Top Up Token RajaTopUp berhasil!
 
 💰 Saldo berhasil ditambahkan:
@@ -895,6 +898,7 @@ Rp ${Number(order.harga).toLocaleString("id-ID")}
 
 Terima kasih telah menggunakan RajaTopUp ❤️`
     );
+}
 
     await sendWA(
         sender,

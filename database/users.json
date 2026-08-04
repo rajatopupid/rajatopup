@@ -1,25 +1,25 @@
 [
   {
     "id": "1784088052937",
+    "userId": "ID000002",
     "username": "RajaTopUp001408",
     "email": "rahmadaja0085@gmail.com",
+    "whatsapp": "6283153030363",
     "password": "0085",
     "role": "admin",
+    "wallet": {
+      "saldo": 0,
+      "level": "REGULAR",
+      "history": []
+    },
     "createdAt": "2026-07-15T04:00:52.937Z"
-  },
-  {
-    "id": "1784093706847",
-    "username": "Seijuro",
-    "email": "rahmadaja@gmail.com",
-    "password": "11",
-    "role": "user",
-    "createdAt": "2026-07-15T05:35:06.848Z"
   },
   {
     "id": "1785776355678",
     "userId": "ID000001",
     "username": "admin",
     "email": "rajatopup56@gmail.com",
+    "whatsapp": "6285141408022",
     "password": "1",
     "role": "user",
     "wallet": {
