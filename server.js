@@ -858,7 +858,6 @@ if (order.isToken) {
     const userId = (order.tujuan || "").trim();
 
     if (!userId) {
-
         await sendWA(
             sender,
             "❌ ID RajaTopUp customer tidak ditemukan."
@@ -867,36 +866,45 @@ if (order.isToken) {
         return res.send("OK");
     }
 
-await addSaldo(
-    order.tujuan,
-    order.harga,
-    `Top Up ${order.nama_produk}`
-);
+    // Tambahkan saldo + history + level
+    await addSaldo(
+        userId,
+        order.harga,
+        `Top Up ${order.nama_produk}`
+    );
 
-order.status = "SUCCESS";
+    // Ambil data user terbaru
+    const users = await fs.readJson(USERS);
 
-await write(ORDERS, orders);
+    const user = users.find(u => u.userId === userId);
 
-const user = users.find(u => u.userId === userId);
+    // Kirim WA ke customer jika nomor tersedia
+    if (user?.whatsapp) {
 
-if (user?.whatsapp) {
-    await sendWA(
-        user.whatsapp,
+        await sendWA(
+            user.whatsapp,
 `🎉 Top Up Token RajaTopUp berhasil!
 
 💰 Saldo berhasil ditambahkan:
 Rp ${Number(order.harga).toLocaleString("id-ID")}
 
 Terima kasih telah menggunakan RajaTopUp ❤️`
-    );
-}
+        );
 
+    }
+
+    // Kirim WA ke admin
     await sendWA(
         sender,
 `✅ Token berhasil ditambahkan ke wallet customer.
 
 📄 Invoice : ${order.ref_id}`
     );
+
+    // Simpan status PALING AKHIR
+    order.status = "SUCCESS";
+
+    await write(ORDERS, orders);
 
     return res.send("OK");
 
