@@ -871,16 +871,16 @@ if (order.isToken) {
         return res.send("OK");
     }
 
-await addSaldo(userId, order.harga);
+await addSaldo(order.tujuan, order.harga);
 
-    await addHistory(
-        phone,
-        "TOPUP",
-        order.harga,
-        order.nama_produk
-    );
+await addHistory(
+    order.tujuan,
+    "MASUK",
+    order.harga,
+    `Top Up ${order.nama_produk}`
+);
 
-    await upgradeLevel(phone, order.harga);
+await upgradeLevel(order.tujuan, order.harga);
 
     order.status = "SUCCESS";
 

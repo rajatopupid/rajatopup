@@ -4,6 +4,9 @@ const path = require("path");
 
 const DB = path.join(__dirname, "..", "database");
 
+const WALLET = path.join(DB, "wallet.json");
+const WALLET_HISTORY = path.join(DB, "wallet_history.json");
+
 const USERS = path.join(DB, "users.json");
 
 // Ambil semua wallet

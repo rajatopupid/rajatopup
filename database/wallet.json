@@ -5,5 +5,12 @@
     "saldo": 0,
     "level": "regular",
     "createdAt": "2026-08-03T12:21:34.209Z"
+  },
+  {
+    "id": "0GOp5u263XYlUusYt6Pk-",
+    "phone": "ID000001",
+    "saldo": 0,
+    "level": "regular",
+    "createdAt": "2026-08-04T01:02:12.526Z"
   }
 ]

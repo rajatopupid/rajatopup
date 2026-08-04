@@ -84,20 +84,22 @@ products = products.filter(p =>
 
 router.get("/wallet", async (req, res) => {
 
-console.log(req.session.user);
-
-    const phone = (req.query.phone || "").replace(/\D/g, "");
-
-    if (!phone) {
-        return res.render("wallet", {
-            wallet: null,
-            history: []
-        });
+    if (!req.session.user) {
+        return res.redirect("/login");
     }
 
-const wallet = await getWallet(req.body.tujuan);
+    const users = await fs.readJson(path.join(__dirname, "../database/users.json"));
+
+    const user = users.find(u => u.id === req.session.user.id);
+
+    if (!user) {
+        return res.redirect("/login");
+    }
+
+    const wallet = await getWallet(user.userId);
 
     res.render("wallet", {
+        user,
         wallet,
         history: []
     });
